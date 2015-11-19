@@ -1,5 +1,4 @@
 # React Test
----
 
 ### What is this?
 
