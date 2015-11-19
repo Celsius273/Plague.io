@@ -3,11 +3,13 @@
 ### What is this?
 
 This is a simple as can be react project made as a setup exercise.
-It uses glorious ES6 (without all those pesky semicolons), and the Flux architecture and alt.
+It's written in glorious ES6 (without all those pesky semicolons), and the Flux architecture and alt.
 
 ### How to run it?
 
-Simply clone the repo, run 'npm install' to install all the requisite node modules, then run 'npm run-script build'. The built js file is *build/react_test.js* and you can see the app's main page in *public/react_test.html*
+Simply clone the repo, run 'npm install' to install all the requisite node modules, then run 'npm run-script build'
+
+The built js file is **build/react_test.js** and you can see the app's main page in **public/react_test.html**
 
 ### Anything else?
 
