@@ -3,7 +3,7 @@
 ### What is this?
 
 This is a simple as can be react project made as a setup exercise.
-It's written in glorious ES6 (without all those pesky semicolons), and the Flux architecture and alt.
+It's written in glorious ES6 (without all those pesky semicolons), and the [Flux](https://facebook.github.io/flux/docs/overview.html) architecture for react.js and alt.
 
 ### How to run it?
 
