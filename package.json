@@ -1,10 +1,11 @@
 {
-  "name": "react_test",
+  "name": "Plague.io",
   "version": "1.0.0",
-  "description": "Testing react so I can move on to bigger and better things",
+  "description": "A port of Pandemic, built with node, MongoDB, socket.js and React",
   "main": "js/main.js",
   "scripts": {
-    "build": "node ./node_modules/webpack/bin/webpack.js js/main.js build/react_test.js"
+    "build": "node ./node_modules/webpack/bin/webpack.js js/main.js build/plague.js --progress --devtool",
+    "watch": "node ./node_modules/webpack/bin/webpack.js js/main.js build/plague.js --progress --devtool --watch"
   },
   "dependencies": {
     "alt": "^0.17.8",
@@ -28,6 +29,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Celsius273/react_test"
+    "url": "https://github.com/Celsius273/Plague.io"
   }
 }

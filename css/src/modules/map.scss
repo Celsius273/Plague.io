@@ -1,0 +1,13 @@
+.world-map-container {
+    position: relative;
+}
+
+.world-map-overlay {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.world-map {
+    position: absolute;
+}

@@ -1,0 +1,38 @@
+{
+    Player: {
+        currentCity: cityId,
+        cards: [cityCard],
+        playerId:,
+        playerName:,
+        actionsLeft: (0-4)
+    },
+    city: {
+        hasResearchCenter,
+        cityId,
+        cityName,
+        adjacencies: {
+            cities: [cityId],
+            researchCenters: [cityId]
+        }
+        players: Set {playerId}
+        initialDiseaseColouring: (constant value)
+        diseases: Map {diseaseColouring: num_diseases}
+    },
+    cityCard: {
+        city_id,
+        diseaseColouring
+    },
+    infectionCard: {
+        city_id,
+        diseaseColouring
+    },
+    Game: {
+        cities: Map {city_id, city},
+        cityCards: [cityCard],
+        usedCityCards: [cityCard],
+        infectionCards: [infectionCard],
+        usedInfectionCards: [infectionCard],
+        diseases: Map {diseaseColouring: num_diseases},
+        cures: Set {diseaseColouring}
+    }
+}

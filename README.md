@@ -1,4 +1,4 @@
-# React Test
+# Plague.io
 
 ### What is this?
 
