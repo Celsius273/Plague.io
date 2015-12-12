@@ -1,13 +1,38 @@
+@import "util";
+
+.full-view {
+    @include aspect-ratio(4, 3);
+    > .world-map-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    > .world-map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    // width: 90%;
+    // height: 1000px;
+}
+
 .world-map-container {
+    @extend .full-view;
     position: relative;
 }
 
 .world-map-overlay {
+    // @extend .full-view;
     position: absolute;
     z-index: 1;
     pointer-events: none;
 }
 
 .world-map {
+    // @extend .full-view;
     position: absolute;
 }

@@ -2,7 +2,6 @@ import React from 'react'
 
 import MapStore from '../stores/MapStore'
 import {mapStyle} from '../constants/styles/MapStyles'
-import TestActions from '../actions/TestActions'
 
 let worldMap
 let drawLayer
@@ -48,14 +47,21 @@ var GameMap = React.createClass({
     componentDidMount() {
         const mapStore = this.props.MapStore
         const cities = mapStore.get('cities')
+
+        const width = this.refs.map_container.clientWidth
+        const height = this.refs.map_container.clientHeight
+
+        console.log(width, height)
+
         const mapProps = {
             markers: MapStore.createMarkers(mapStore.get('cities'))
         }
 
         Object.assign(mapProps, mapStyle)
         $('.world-map').vectorMap(mapProps)
+        $('.world-map').vectorMap('get', 'mapObject').updateSize()
         worldMap = $('.world-map').vectorMap('get', 'mapObject')
-        drawLayer = SVG(this.refs.map_overlay).size(1500, 1000)
+        drawLayer = SVG(this.refs.map_overlay).size(width, height)
 
         this.connectMarkers()
         this.createMarkers(cities)
@@ -63,15 +69,14 @@ var GameMap = React.createClass({
     },
 
     render() {
-        const mapStyle = {
-            width: '1500px',
-            height: '1000px'
-        }
         return (
-            <div className='world-map-container'>
+            <div
+                className='world-map-container'
+                ref='map_container'
+            >
                 <div
                     className='world-map'
-                    style={mapStyle}
+                    // style={mapStyle}
                 >
                 </div>
                 <div

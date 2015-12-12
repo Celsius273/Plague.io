@@ -3,7 +3,6 @@ import {bind, datasource, decorate} from 'alt/utils/decorators'
 import Immutable from 'immutable'
 
 import {DISEASE_COLORS} from '../constants/GameConstants'
-import TestActions from '../actions/TestActions'
 
 @decorate(alt)
 export class MapStore {

@@ -1,16 +1,44 @@
-/* line 1, ../src/modules/map.scss */
+/* line 3, ../src/modules/map.scss */
+.full-view, .world-map-container {
+  position: relative;
+}
+/* line 3, ../src/modules/util.scss */
+.full-view:before, .world-map-container:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 75%;
+}
+/* line 5, ../src/modules/map.scss */
+.full-view > .world-map-overlay, .world-map-container > .world-map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+/* line 12, ../src/modules/map.scss */
+.full-view > .world-map, .world-map-container > .world-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* line 23, ../src/modules/map.scss */
 .world-map-container {
   position: relative;
 }
 
-/* line 5, ../src/modules/map.scss */
+/* line 28, ../src/modules/map.scss */
 .world-map-overlay {
   position: absolute;
   z-index: 1;
   pointer-events: none;
 }
 
-/* line 11, ../src/modules/map.scss */
+/* line 35, ../src/modules/map.scss */
 .world-map {
   position: absolute;
 }

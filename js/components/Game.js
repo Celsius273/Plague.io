@@ -5,7 +5,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import GameStore from '../stores/GameStore'
-import TestActions from '../actions/TestActions'
 import MapStore from '../stores/MapStore'
 import GameHeader from './GameHeader'
 import GameMap from './GameMap'
