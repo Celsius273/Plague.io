@@ -95,19 +95,19 @@
 
 	var _storesGameStore2 = _interopRequireDefault(_storesGameStore);
 
-	var _storesMapStore = __webpack_require__(196);
+	var _storesMapStore = __webpack_require__(195);
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _GameHeader = __webpack_require__(198);
+	var _GameHeader = __webpack_require__(197);
 
 	var _GameHeader2 = _interopRequireDefault(_GameHeader);
 
-	var _GameMap = __webpack_require__(199);
+	var _GameMap = __webpack_require__(198);
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(201);
+	var _GameConsole = __webpack_require__(199);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -28122,8 +28122,7 @@
 	}));
 
 /***/ },
-/* 195 */,
-/* 196 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28148,7 +28147,7 @@
 
 	var _immutable2 = _interopRequireDefault(_immutable);
 
-	var _constantsGameConstants = __webpack_require__(197);
+	var _constantsGameConstants = __webpack_require__(196);
 
 	var MapStore = (function () {
 	    _createClass(MapStore, null, [{
@@ -28210,7 +28209,7 @@
 	exports['default'] = _alt2['default'].createStore(MapStore);
 
 /***/ },
-/* 197 */
+/* 196 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28233,6 +28232,41 @@
 	exports.DISEASE_COLORS = DISEASE_COLORS;
 
 /***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(17);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _storesMapStore = __webpack_require__(195);
+
+	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
+
+	var GameHeader = _react2['default'].createClass({
+	    displayName: 'GameHeader',
+
+	    propTypes: {
+	        GameStore: _react2['default'].PropTypes.object.isRequired
+	    },
+
+	    render: function render() {
+	        return _react2['default'].createElement('div', { className: 'game-header', ref: 'game_header' });
+	    }
+	});
+
+	exports['default'] = GameHeader;
+	module.exports = exports['default'];
+
+/***/ },
 /* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28248,23 +28282,140 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _storesMapStore = __webpack_require__(196);
+	var _actionsPlayerActions = __webpack_require__(200);
+
+	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
+
+	var _storesMapStore = __webpack_require__(195);
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var GameHeader = _react2['default'].createClass({
-	    displayName: 'GameHeader',
+	var _constantsStylesMapStyles = __webpack_require__(201);
+
+	// globals for map and svg overlay
+	var worldMap = undefined;
+	var drawLayer = undefined;
+
+	var GameMap = _react2['default'].createClass({
+	    displayName: 'GameMap',
 
 	    propTypes: {
-	        GameStore: _react2['default'].PropTypes.object.isRequired
+	        GameStore: _react2['default'].PropTypes.object.isRequired,
+	        MapStore: _react2['default'].PropTypes.object.isRequired
+	    },
+
+	    getContainerSize: function getContainerSize() {
+	        return {
+	            width: this.refs.map_container.clientWidth,
+	            height: this.refs.map_container.clientHeight
+	        };
+	    },
+
+	    connectMarkers: function connectMarkers() {
+	        var test1 = [64.133, -21.933];
+	        var test2 = [48.857, 2.351];
+
+	        var coords1 = worldMap.latLngToPoint(test1[0], test1[1]);
+	        var coords2 = worldMap.latLngToPoint(test2[0], test2[1]);
+
+	        drawLayer.line(coords1.x, coords1.y, coords2.x, coords2.y).stroke({
+	            color: '#f0f',
+	            width: 4
+	        });
+	    },
+
+	    createMarkers: function createMarkers(cities) {
+
+	        /*
+	        function whenSomethingHappens() {
+	          rect.fire('myevent', {some:'data'}) 
+	        }
+	         rect.on('myevent', function(e) {
+	          alert(e.detail.some) // outputs 'data'
+	        })
+	        */
+
+	        cities.forEach(function (city) {
+	            var _worldMap$latLngToPoint = worldMap.latLngToPoint(city.get('coordinates')[0], city.get('coordinates')[1]);
+
+	            var x = _worldMap$latLngToPoint.x;
+	            var y = _worldMap$latLngToPoint.y;
+
+	            drawLayer.circle().radius(10).attr({
+	                fill: '#370',
+	                cx: x,
+	                cy: y,
+	                id: city.get('name'),
+	                'data-click-id': city.get('name')
+	            }).on('click', function (e) {
+	                e.stopPropagation();
+	                _actionsPlayerActions2['default'].selectCity(city);
+	            });
+	        });
+	    },
+
+	    handleResize: function handleResize() {
+	        var _getContainerSize = this.getContainerSize();
+
+	        var width = _getContainerSize.width;
+	        var height = _getContainerSize.height;
+
+	        drawLayer.size(width, height);
+	        this.resizeMarkers();
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        window.addEventListener('resize', this.handleResize);
+
+	        var mapStore = this.props.MapStore;
+	        var cities = mapStore.get('cities');
+
+	        var _getContainerSize2 = this.getContainerSize();
+
+	        var width = _getContainerSize2.width;
+	        var height = _getContainerSize2.height;
+
+	        $('.world-map').vectorMap(_constantsStylesMapStyles.mapStyle);
+	        worldMap = $('.world-map').vectorMap('get', 'mapObject');
+
+	        drawLayer = SVG(this.refs.map_overlay).size(width, height).on('click', function (event) {
+	            event.stopPropagation();
+	            console.log('asdf');
+	        }).viewbox({
+	            x: 0,
+	            y: 0,
+	            width: width,
+	            height: height
+	        });
+
+	        this.connectMarkers();
+	        this.createMarkers(cities);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        window.removeEventListener('resize', this.handleResize);
 	    },
 
 	    render: function render() {
-	        return _react2['default'].createElement('div', { className: 'game-header' });
+	        return _react2['default'].createElement(
+	            'div',
+	            {
+	                className: 'world-map-container',
+	                ref: 'map_container'
+	            },
+	            _react2['default'].createElement('div', {
+	                className: 'world-map',
+	                ref: 'map'
+	            }),
+	            _react2['default'].createElement('div', {
+	                className: 'world-map-overlay',
+	                ref: 'map_overlay'
+	            })
+	        );
 	    }
 	});
 
-	exports['default'] = GameHeader;
+	exports['default'] = GameMap;
 	module.exports = exports['default'];
 
 /***/ },
@@ -28283,98 +28434,66 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _storesMapStore = __webpack_require__(196);
+	var _storesMapStore = __webpack_require__(195);
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _constantsStylesMapStyles = __webpack_require__(200);
-
-	var worldMap = undefined;
-	var drawLayer = undefined;
-
-	var GameMap = _react2['default'].createClass({
-	    displayName: 'GameMap',
+	var GameConsole = _react2['default'].createClass({
+	    displayName: 'GameConsole',
 
 	    propTypes: {
-	        GameStore: _react2['default'].PropTypes.object.isRequired,
-	        MapStore: _react2['default'].PropTypes.object.isRequired
-	    },
-
-	    connectMarkers: function connectMarkers() {
-	        var test1 = [64.133, -21.933];
-	        var test2 = [48.857, 2.351];
-
-	        var coords1 = worldMap.latLngToPoint(test1[0], test1[1]);
-	        var coords2 = worldMap.latLngToPoint(test2[0], test2[1]);
-
-	        drawLayer.line(coords1.x, coords1.y, coords2.x, coords2.y).stroke({
-	            color: '#f0f',
-	            width: 4
-	        });
-	    },
-
-	    createMarkers: function createMarkers(cities) {
-	        cities.forEach(function (city) {
-	            var _worldMap$latLngToPoint = worldMap.latLngToPoint(city.get('coordinates')[0], city.get('coordinates')[1]);
-
-	            var x = _worldMap$latLngToPoint.x;
-	            var y = _worldMap$latLngToPoint.y;
-
-	            drawLayer.circle().radius(10).attr({
-	                fill: '#370',
-	                cx: x,
-	                cy: y
-	            });
-	        });
-	    },
-
-	    componentDidMount: function componentDidMount() {
-	        var mapStore = this.props.MapStore;
-	        var cities = mapStore.get('cities');
-
-	        var width = this.refs.map_container.clientWidth;
-	        var height = this.refs.map_container.clientHeight;
-
-	        console.log(width, height);
-
-	        var mapProps = {
-	            markers: _storesMapStore2['default'].createMarkers(mapStore.get('cities'))
-	        };
-
-	        Object.assign(mapProps, _constantsStylesMapStyles.mapStyle);
-	        $('.world-map').vectorMap(mapProps);
-	        $('.world-map').vectorMap('get', 'mapObject').updateSize();
-	        worldMap = $('.world-map').vectorMap('get', 'mapObject');
-	        drawLayer = SVG(this.refs.map_overlay).size(width, height);
-
-	        this.connectMarkers();
-	        this.createMarkers(cities);
+	        GameStore: _react2['default'].PropTypes.object.isRequired
 	    },
 
 	    render: function render() {
-	        return _react2['default'].createElement(
-	            'div',
-	            {
-	                className: 'world-map-container',
-	                ref: 'map_container'
-	            },
-	            _react2['default'].createElement('div', {
-	                className: 'world-map'
-	                // style={mapStyle}
-	            }),
-	            _react2['default'].createElement('div', {
-	                className: 'world-map-overlay',
-	                ref: 'map_overlay'
-	            })
-	        );
+	        return _react2['default'].createElement('div', { className: 'game-console' });
 	    }
 	});
 
-	exports['default'] = GameMap;
+	exports['default'] = GameConsole;
 	module.exports = exports['default'];
 
 /***/ },
 /* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _alt = __webpack_require__(2);
+
+	var _alt2 = _interopRequireDefault(_alt);
+
+	var PlayerActions = (function () {
+	    _createClass(PlayerActions, null, [{
+	        key: 'displayName',
+	        value: 'PlayerActions',
+	        enumerable: true
+	    }]);
+
+	    function PlayerActions() {
+	        _classCallCheck(this, PlayerActions);
+
+	        this.generateActions('selectCity');
+	    }
+
+	    return PlayerActions;
+	})();
+
+	exports['default'] = _alt2['default'].createActions(PlayerActions);
+	module.exports = exports['default'];
+
+/***/ },
+/* 201 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28388,6 +28507,7 @@
 	var BACKGROUND_COLOR = '#383f47';
 
 	exports.BACKGROUND_COLOR = BACKGROUND_COLOR;
+	// deprecated
 	var markerStyle = {
 	    initial: {
 	        fill: '#F8E23B',
@@ -28410,6 +28530,9 @@
 	            'stroke-opacity': 1
 	        }
 	    },
+	    zoomOnScroll: false,
+	    panOnDrag: false,
+	    zoomStep: 0,
 	    onRegionTipShow: function onRegionTipShow(e, el, code) {
 	        e.preventDefault();
 	    },
@@ -28418,41 +28541,6 @@
 	    }
 	};
 	exports.mapStyle = mapStyle;
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _storesMapStore = __webpack_require__(196);
-
-	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
-
-	var GameConsole = _react2['default'].createClass({
-	    displayName: 'GameConsole',
-
-	    propTypes: {
-	        GameStore: _react2['default'].PropTypes.object.isRequired
-	    },
-
-	    render: function render() {
-	        return _react2['default'].createElement('div', { className: 'game-console' });
-	    }
-	});
-
-	exports['default'] = GameConsole;
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

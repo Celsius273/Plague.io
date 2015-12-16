@@ -2,6 +2,7 @@ export const DEFAULT_MAP = 'world_mill'
 
 export const BACKGROUND_COLOR = '#383f47'
 
+// deprecated
 export const markerStyle = {
     initial: {
         fill: '#F8E23B',
@@ -23,6 +24,9 @@ export const mapStyle = {
             'stroke-opacity': 1,
         }
     },
+    zoomOnScroll: false,
+    panOnDrag: false,
+    zoomStep: 0,
     onRegionTipShow: ((e, el, code) => {
         e.preventDefault();
     }),

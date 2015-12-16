@@ -22,7 +22,6 @@
     "react-router": "^0.13.5",
     "sinon": "^1.17.2",
     "uuid": "^2.0.1",
-    "watchify": "^3.6.0",
     "webpack": "^1.12.6"
   },
   "author": "Kelvin Jiang",

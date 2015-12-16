@@ -16,8 +16,6 @@
         right: 0;
         bottom: 0;
     }
-    // width: 90%;
-    // height: 1000px;
 }
 
 .world-map-container {
@@ -26,13 +24,16 @@
 }
 
 .world-map-overlay {
-    // @extend .full-view;
     position: absolute;
     z-index: 1;
-    pointer-events: none;
 }
 
 .world-map {
-    // @extend .full-view;
     position: absolute;
+    pointer-events: none; // do not allow the player to interact with the world map
+}
+
+.game-header {
+    width: 100%;
+    // height: 500px;
 }

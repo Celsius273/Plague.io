@@ -1,8 +1,11 @@
 import React from 'react'
 
+import PlayerActions from '../actions/PlayerActions'
 import MapStore from '../stores/MapStore'
 import {mapStyle} from '../constants/styles/MapStyles'
 
+
+// globals for map and svg overlay
 let worldMap
 let drawLayer
 
@@ -10,6 +13,13 @@ var GameMap = React.createClass({
     propTypes: {
         GameStore: React.PropTypes.object.isRequired,
         MapStore: React.PropTypes.object.isRequired
+    },
+
+    getContainerSize() {
+        return {
+            width: this.refs.map_container.clientWidth,
+            height: this.refs.map_container.clientHeight
+        }
     },
 
     connectMarkers() {
@@ -28,6 +38,17 @@ var GameMap = React.createClass({
     },
 
     createMarkers(cities) {
+
+        /*
+        function whenSomethingHappens() {
+          rect.fire('myevent', {some:'data'}) 
+        }
+
+        rect.on('myevent', function(e) {
+          alert(e.detail.some) // outputs 'data'
+        })
+        */
+
         cities.forEach((city) => {
             const {x, y} = worldMap.latLngToPoint(
                 city.get('coordinates')[0],
@@ -39,33 +60,50 @@ var GameMap = React.createClass({
                 .attr({
                     fill: '#370',
                     cx: x,
-                    cy: y
+                    cy: y,
+                    id: city.get('name'),
+                    'data-click-id': city.get('name')
+                }).on('click', (e) => {
+                    e.stopPropagation()
+                    PlayerActions.selectCity(city)
                 })
         })
     },
 
+    handleResize() {
+        const {width, height} = this.getContainerSize()
+        drawLayer.size(width, height)
+        this.resizeMarkers()
+    },
+
     componentDidMount() {
+        window.addEventListener('resize', this.handleResize)
+
         const mapStore = this.props.MapStore
         const cities = mapStore.get('cities')
 
-        const width = this.refs.map_container.clientWidth
-        const height = this.refs.map_container.clientHeight
-
-        console.log(width, height)
-
-        const mapProps = {
-            markers: MapStore.createMarkers(mapStore.get('cities'))
-        }
-
-        Object.assign(mapProps, mapStyle)
-        $('.world-map').vectorMap(mapProps)
-        $('.world-map').vectorMap('get', 'mapObject').updateSize()
+        const {width, height} = this.getContainerSize()
+        $('.world-map').vectorMap(mapStyle)
         worldMap = $('.world-map').vectorMap('get', 'mapObject')
+
         drawLayer = SVG(this.refs.map_overlay).size(width, height)
+        .on('click', function(event) {
+            event.stopPropagation()
+            console.log('asdf')
+        })
+        .viewbox({
+            x: 0,
+            y: 0,
+            width: width,
+            height: height
+        })
 
         this.connectMarkers()
         this.createMarkers(cities)
+    },
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize)
     },
 
     render() {
@@ -76,7 +114,7 @@ var GameMap = React.createClass({
             >
                 <div
                     className='world-map'
-                    // style={mapStyle}
+                    ref='map'
                 >
                 </div>
                 <div

@@ -26,21 +26,26 @@
   bottom: 0;
 }
 
-/* line 23, ../src/modules/map.scss */
+/* line 21, ../src/modules/map.scss */
 .world-map-container {
   position: relative;
 }
 
-/* line 28, ../src/modules/map.scss */
+/* line 26, ../src/modules/map.scss */
 .world-map-overlay {
   position: absolute;
   z-index: 1;
+}
+
+/* line 31, ../src/modules/map.scss */
+.world-map {
+  position: absolute;
   pointer-events: none;
 }
 
-/* line 35, ../src/modules/map.scss */
-.world-map {
-  position: absolute;
+/* line 36, ../src/modules/map.scss */
+.game-header {
+  width: 100%;
 }
 
 /*# sourceMappingURL=plague.css.map */

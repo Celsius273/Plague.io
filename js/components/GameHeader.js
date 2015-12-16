@@ -10,7 +10,7 @@ var GameHeader = React.createClass({
 
     render() {
         return (
-            <div className='game-header'>
+            <div className='game-header' ref='game_header'>
             </div>
         )
     }
