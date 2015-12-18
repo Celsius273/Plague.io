@@ -1,6 +1,6 @@
 export const DEFAULT_MAP = 'world_mill'
 
-export const BACKGROUND_COLOR = '#383f47'
+export const BACKGROUND_COLOR = '#112255'
 
 // deprecated
 export const markerStyle = {

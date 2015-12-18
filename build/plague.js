@@ -107,7 +107,7 @@
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(199);
+	var _GameConsole = __webpack_require__(202);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -28282,6 +28282,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _componentsCities = __webpack_require__(199);
+
+	var _componentsCities2 = _interopRequireDefault(_componentsCities);
+
 	var _actionsPlayerActions = __webpack_require__(200);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
@@ -28292,9 +28296,8 @@
 
 	var _constantsStylesMapStyles = __webpack_require__(201);
 
-	// globals for map and svg overlay
+	// globals for map
 	var worldMap = undefined;
-	var drawLayer = undefined;
 
 	var GameMap = _react2['default'].createClass({
 	    displayName: 'GameMap',
@@ -28304,6 +28307,12 @@
 	        MapStore: _react2['default'].PropTypes.object.isRequired
 	    },
 
+	    getInitialState: function getInitialState() {
+	        return {
+	            isMapInitialized: false
+	        };
+	    },
+
 	    getContainerSize: function getContainerSize() {
 	        return {
 	            width: this.refs.map_container.clientWidth,
@@ -28311,89 +28320,18 @@
 	        };
 	    },
 
-	    connectMarkers: function connectMarkers() {
-	        var test1 = [64.133, -21.933];
-	        var test2 = [48.857, 2.351];
-
-	        var coords1 = worldMap.latLngToPoint(test1[0], test1[1]);
-	        var coords2 = worldMap.latLngToPoint(test2[0], test2[1]);
-
-	        drawLayer.line(coords1.x, coords1.y, coords2.x, coords2.y).stroke({
-	            color: '#f0f',
-	            width: 4
-	        });
-	    },
-
-	    createMarkers: function createMarkers(cities) {
-
-	        /*
-	        function whenSomethingHappens() {
-	          rect.fire('myevent', {some:'data'}) 
-	        }
-	         rect.on('myevent', function(e) {
-	          alert(e.detail.some) // outputs 'data'
-	        })
-	        */
-
-	        cities.forEach(function (city) {
-	            var _worldMap$latLngToPoint = worldMap.latLngToPoint(city.get('coordinates')[0], city.get('coordinates')[1]);
-
-	            var x = _worldMap$latLngToPoint.x;
-	            var y = _worldMap$latLngToPoint.y;
-
-	            drawLayer.circle().radius(10).attr({
-	                fill: '#370',
-	                cx: x,
-	                cy: y,
-	                id: city.get('name'),
-	                'data-click-id': city.get('name')
-	            }).on('click', function (e) {
-	                e.stopPropagation();
-	                _actionsPlayerActions2['default'].selectCity(city);
-	            });
-	        });
-	    },
-
-	    handleResize: function handleResize() {
+	    componentDidMount: function componentDidMount() {
 	        var _getContainerSize = this.getContainerSize();
 
 	        var width = _getContainerSize.width;
 	        var height = _getContainerSize.height;
 
-	        drawLayer.size(width, height);
-	        this.resizeMarkers();
-	    },
-
-	    componentDidMount: function componentDidMount() {
-	        window.addEventListener('resize', this.handleResize);
-
-	        var mapStore = this.props.MapStore;
-	        var cities = mapStore.get('cities');
-
-	        var _getContainerSize2 = this.getContainerSize();
-
-	        var width = _getContainerSize2.width;
-	        var height = _getContainerSize2.height;
-
 	        $('.world-map').vectorMap(_constantsStylesMapStyles.mapStyle);
 	        worldMap = $('.world-map').vectorMap('get', 'mapObject');
 
-	        drawLayer = SVG(this.refs.map_overlay).size(width, height).on('click', function (event) {
-	            event.stopPropagation();
-	            console.log('asdf');
-	        }).viewbox({
-	            x: 0,
-	            y: 0,
-	            width: width,
-	            height: height
+	        this.setState({
+	            isMapInitialized: true
 	        });
-
-	        this.connectMarkers();
-	        this.createMarkers(cities);
-	    },
-
-	    componentWillUnmount: function componentWillUnmount() {
-	        window.removeEventListener('resize', this.handleResize);
 	    },
 
 	    render: function render() {
@@ -28407,9 +28345,10 @@
 	                className: 'world-map',
 	                ref: 'map'
 	            }),
-	            _react2['default'].createElement('div', {
-	                className: 'world-map-overlay',
-	                ref: 'map_overlay'
+	            _react2['default'].createElement(_componentsCities2['default'], {
+	                cities: this.props.MapStore.get('cities'),
+	                mapObject: worldMap,
+	                isMapInitialized: this.state.isMapInitialized
 	            })
 	        );
 	    }
@@ -28434,23 +28373,123 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _actionsPlayerActions = __webpack_require__(200);
+
+	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
+
 	var _storesMapStore = __webpack_require__(195);
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var GameConsole = _react2['default'].createClass({
-	    displayName: 'GameConsole',
+	// global for svg overlay
+	var drawLayer = undefined;
+
+	var Cities = _react2['default'].createClass({
+	    displayName: 'Cities',
 
 	    propTypes: {
-	        GameStore: _react2['default'].PropTypes.object.isRequired
+	        cities: _react2['default'].PropTypes.object.isRequired,
+	        mapObject: _react2['default'].PropTypes.object,
+	        isMapInitialized: _react2['default'].PropTypes.bool
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            isMapInitialized: false,
+	            mapObject: null
+	        };
+	    },
+
+	    getContainerSize: function getContainerSize() {
+	        return {
+	            width: this.refs.map_overlay.clientWidth,
+	            height: this.refs.map_overlay.clientHeight
+	        };
+	    },
+
+	    connectMarkers: function connectMarkers() {
+	        var latLngToPoint = this.props.latLngToPoint;
+
+	        var test1 = [64.133, -21.933];
+	        var test2 = [48.857, 2.351];
+
+	        var coords1 = this.props.mapObject.latLngToPoint(test1[0], test1[1]);
+	        var coords2 = this.props.mapObject.latLngToPoint(test2[0], test2[1]);
+
+	        drawLayer.line(coords1.x, coords1.y, coords2.x, coords2.y).stroke({
+	            color: '#f0f',
+	            width: 4
+	        });
+	    },
+
+	    createMarkers: function createMarkers(cities) {
+	        var _this = this;
+
+	        cities.forEach(function (city) {
+	            var _props$mapObject$latLngToPoint = _this.props.mapObject.latLngToPoint(city.get('coordinates')[0], city.get('coordinates')[1]);
+
+	            var x = _props$mapObject$latLngToPoint.x;
+	            var y = _props$mapObject$latLngToPoint.y;
+
+	            drawLayer.circle().radius(10).attr({
+	                fill: '#370',
+	                cx: x,
+	                cy: y,
+	                id: city.get('name'),
+	                'data-click-id': city.get('name')
+	            }).on('click', function (e) {
+	                e.stopPropagation();
+	                _actionsPlayerActions2['default'].selectCity(city);
+	            });
+	        });
+	    },
+
+	    createMapOverlay: function createMapOverlay() {
+	        var _getContainerSize = this.getContainerSize();
+
+	        var width = _getContainerSize.width;
+	        var height = _getContainerSize.height;
+
+	        window.addEventListener('resize', this.handleResize);
+
+	        var cities = this.props.cities;
+	        drawLayer = SVG(this.refs.map_overlay).size(width, height).viewbox({
+	            x: 0,
+	            y: 0,
+	            width: width,
+	            height: height
+	        });
+
+	        this.connectMarkers();
+	        this.createMarkers(cities);
+	    },
+
+	    handleResize: function handleResize() {
+	        var _getContainerSize2 = this.getContainerSize();
+
+	        var width = _getContainerSize2.width;
+	        var height = _getContainerSize2.height;
+
+	        drawLayer.size(width, height);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        window.removeEventListener('resize', this.handleResize);
 	    },
 
 	    render: function render() {
-	        return _react2['default'].createElement('div', { className: 'game-console' });
+	        if (this.props.isMapInitialized) {
+	            this.createMapOverlay();
+	        }
+
+	        return _react2['default'].createElement('div', {
+	            className: 'world-map-overlay',
+	            ref: 'map_overlay'
+	        });
 	    }
 	});
 
-	exports['default'] = GameConsole;
+	exports['default'] = Cities;
 	module.exports = exports['default'];
 
 /***/ },
@@ -28504,7 +28543,7 @@
 	var DEFAULT_MAP = 'world_mill';
 
 	exports.DEFAULT_MAP = DEFAULT_MAP;
-	var BACKGROUND_COLOR = '#383f47';
+	var BACKGROUND_COLOR = '#112255';
 
 	exports.BACKGROUND_COLOR = BACKGROUND_COLOR;
 	// deprecated
@@ -28541,6 +28580,41 @@
 	    }
 	};
 	exports.mapStyle = mapStyle;
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(17);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _storesMapStore = __webpack_require__(195);
+
+	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
+
+	var GameConsole = _react2['default'].createClass({
+	    displayName: 'GameConsole',
+
+	    propTypes: {
+	        GameStore: _react2['default'].PropTypes.object.isRequired
+	    },
+
+	    render: function render() {
+	        return _react2['default'].createElement('div', { className: 'game-console' });
+	    }
+	});
+
+	exports['default'] = GameConsole;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

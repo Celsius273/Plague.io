@@ -1,7 +1,7 @@
 @import "util";
 
 .full-view {
-    @include aspect-ratio(4, 3);
+    @include aspect-ratio(16, 9);
     > .world-map-overlay {
         position: absolute;
         top: 0;
@@ -20,7 +20,9 @@
 
 .world-map-container {
     @extend .full-view;
+    width: 85%;
     position: relative;
+    margin: auto;
 }
 
 .world-map-overlay {
@@ -30,10 +32,10 @@
 
 .world-map {
     position: absolute;
-    pointer-events: none; // do not allow the player to interact with the world map
+    pointer-events: none; // do not allow the player to interact with the base world map
 }
 
 .game-header {
-    width: 100%;
+    width: 85%;
     // height: 500px;
 }
