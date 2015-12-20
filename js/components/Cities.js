@@ -1,6 +1,9 @@
+import Immutable from 'immutable'
 import React from 'react'
 
+import {CITY_COLORS} from '../constants/styles/CityStyles'
 import PlayerActions from '../actions/PlayerActions'
+import {coordinatesToPoint, getCityAttr} from '../helpers/MapHelpers'
 import MapStore from '../stores/MapStore'
 
 
@@ -28,39 +31,55 @@ var Cities = React.createClass({
         }
     },
 
-    connectMarkers() {
-        const latLngToPoint = this.props.latLngToPoint
+    connectMarkers(cities) {
+        const map = this.props.mapObject
+        let connected = new Immutable.Set()
+        cities.forEach((city, cityId) => {
+            const adjacencies = city.get('adjacencies')
+            const cityCoordinates = coordinatesToPoint(map, city)
 
-        const test1 = [64.133, -21.933]
-        const test2 = [48.857, 2.351]
+            adjacencies.forEach((adjacentCityId) => {
+                if (connected.has(adjacentCityId)) {
+                    return
+                }
 
-        var coords1 = this.props.mapObject.latLngToPoint(test1[0], test1[1])
-        var coords2 = this.props.mapObject.latLngToPoint(test2[0], test2[1])
+                const adjacentCity = cities.get(adjacentCityId)
+                const adjacentCoordinates = coordinatesToPoint(map, adjacentCity)
 
-        drawLayer.line(
-            coords1.x, coords1.y, coords2.x, coords2.y
-            ).stroke({
-                color: '#f0f',
-                width: 4
+                drawLayer.line(
+                    cityCoordinates.x, cityCoordinates.y,
+                    adjacentCoordinates.x, adjacentCoordinates.y
+                    ).stroke({
+                        color: CITY_COLORS[city.get('initialDiseaseColouring')],
+                        width: 6
+                    })
             })
+
+            connected = connected.add(cityId)
+        })
     },
 
     createMarkers(cities) {
+        const map = this.props.mapObject
         cities.forEach((city) => {
-            const {x, y} = this.props.mapObject.latLngToPoint(
-                city.get('coordinates')[0],
-                city.get('coordinates')[1]
-            )
+            const {x, y} = coordinatesToPoint(map, city)
+
+            /*
+            {
+                fill: CITY_COLORS[city.get('initialDiseaseColouring')],
+                cx: x, cy: y,
+                id: city.get('name'),
+                'data-click-id': city.get('name'),
+                stroke: 'black',
+                'stroke-width': '3'
+            }
+            */
 
             drawLayer.circle()
-                .radius(10)
-                .attr({
-                    fill: '#370',
-                    cx: x,
-                    cy: y,
-                    id: city.get('name'),
-                    'data-click-id': city.get('name')
-                }).on('click', (e) => {
+                .radius(15)
+                .attr(getCityAttr(city, x, y))
+                .addClass(`city ${city.get('initialDiseaseColouring')}`)
+                .on('click', (e) => {
                     e.stopPropagation()
                     PlayerActions.selectCity(city)
                 })
@@ -74,13 +93,11 @@ var Cities = React.createClass({
         const cities = this.props.cities
         drawLayer = SVG(this.refs.map_overlay).size(width, height)
         .viewbox({
-            x: 0,
-            y: 0,
-            width: width,
-            height: height
+            x: 0, y: 0,
+            width: width, height: height
         })
 
-        this.connectMarkers()
+        this.connectMarkers(cities)
         this.createMarkers(cities)
     },
 

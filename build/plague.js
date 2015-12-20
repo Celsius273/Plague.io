@@ -107,7 +107,7 @@
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(202);
+	var _GameConsole = __webpack_require__(203);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -28147,7 +28147,7 @@
 
 	var _immutable2 = _interopRequireDefault(_immutable);
 
-	var _constantsGameConstants = __webpack_require__(196);
+	var _constantsGameConstants = __webpack_require__(200);
 
 	var MapStore = (function () {
 	    _createClass(MapStore, null, [{
@@ -28168,20 +28168,36 @@
 	            return new _immutable2['default'].Map({
 	                cities: new _immutable2['default'].Map({
 	                    1: new _immutable2['default'].Map({
-	                        id: 1,
+	                        id: '1',
 	                        name: 'Reykjavik',
-	                        adjacencies: new _immutable2['default'].Set([2]),
+	                        adjacencies: new _immutable2['default'].Set(['2', '3']),
 	                        coordinates: [64.133, -21.933],
 	                        hasResearchCenter: false,
 	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
 	                    }),
 	                    2: new _immutable2['default'].Map({
-	                        id: 2,
+	                        id: '2',
 	                        name: 'Paris',
-	                        adjacencies: new _immutable2['default'].Set([1]),
+	                        adjacencies: new _immutable2['default'].Set(['1', '3']),
 	                        coordinates: [48.857, 2.351],
 	                        hasResearchCenter: true,
 	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    3: new _immutable2['default'].Map({
+	                        id: '3',
+	                        name: 'St. John\'s',
+	                        adjacencies: new _immutable2['default'].Set(['1', '2', '4']),
+	                        coordinates: [47.567, -52.707],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    4: new _immutable2['default'].Map({
+	                        id: '4',
+	                        name: 'Washington D.C.',
+	                        adjacencies: new _immutable2['default'].Set(['3']),
+	                        coordinates: [38.905, -77.016],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
 	                    })
 	                })
 	            });
@@ -28210,26 +28226,26 @@
 
 /***/ },
 /* 196 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	var MAX_DISEASES = 24;
 
-	exports.MAX_DISEASES = MAX_DISEASES;
-	var MAX_OUTBREAKS = 8;
+	var _GameConstants = __webpack_require__(200);
 
-	exports.MAX_OUTBREAKS = MAX_OUTBREAKS;
-	var DISEASE_COLORS = {
-	    RED: 'red',
-	    BLUE: 'blue',
-	    YELLOW: 'yellow',
-	    BLACK: 'black'
+	var CITY_SIZE = 10;
+
+	exports.CITY_SIZE = CITY_SIZE;
+	var CITY_COLORS = {
+	    red: '#f33',
+	    blue: '#05d',
+	    yellow: '#fd0',
+	    black: '#333'
 	};
-	exports.DISEASE_COLORS = DISEASE_COLORS;
+	exports.CITY_COLORS = CITY_COLORS;
 
 /***/ },
 /* 197 */
@@ -28286,7 +28302,7 @@
 
 	var _componentsCities2 = _interopRequireDefault(_componentsCities);
 
-	var _actionsPlayerActions = __webpack_require__(200);
+	var _actionsPlayerActions = __webpack_require__(201);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
@@ -28294,7 +28310,7 @@
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _constantsStylesMapStyles = __webpack_require__(201);
+	var _constantsStylesMapStyles = __webpack_require__(202);
 
 	// globals for map
 	var worldMap = undefined;
@@ -28369,13 +28385,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	var _immutable = __webpack_require__(194);
+
+	var _immutable2 = _interopRequireDefault(_immutable);
+
 	var _react = __webpack_require__(17);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _actionsPlayerActions = __webpack_require__(200);
+	var _constantsStylesCityStyles = __webpack_require__(196);
+
+	var _actionsPlayerActions = __webpack_require__(201);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
+
+	var _helpersMapHelpers = __webpack_require__(204);
 
 	var _storesMapStore = __webpack_require__(195);
 
@@ -28407,37 +28431,51 @@
 	        };
 	    },
 
-	    connectMarkers: function connectMarkers() {
-	        var latLngToPoint = this.props.latLngToPoint;
+	    connectMarkers: function connectMarkers(cities) {
+	        var map = this.props.mapObject;
+	        var connected = new _immutable2['default'].Set();
+	        cities.forEach(function (city, cityId) {
+	            var adjacencies = city.get('adjacencies');
+	            var cityCoordinates = (0, _helpersMapHelpers.coordinatesToPoint)(map, city);
 
-	        var test1 = [64.133, -21.933];
-	        var test2 = [48.857, 2.351];
+	            adjacencies.forEach(function (adjacentCityId) {
+	                if (connected.has(adjacentCityId)) {
+	                    return;
+	                }
 
-	        var coords1 = this.props.mapObject.latLngToPoint(test1[0], test1[1]);
-	        var coords2 = this.props.mapObject.latLngToPoint(test2[0], test2[1]);
+	                var adjacentCity = cities.get(adjacentCityId);
+	                var adjacentCoordinates = (0, _helpersMapHelpers.coordinatesToPoint)(map, adjacentCity);
 
-	        drawLayer.line(coords1.x, coords1.y, coords2.x, coords2.y).stroke({
-	            color: '#f0f',
-	            width: 4
+	                drawLayer.line(cityCoordinates.x, cityCoordinates.y, adjacentCoordinates.x, adjacentCoordinates.y).stroke({
+	                    color: _constantsStylesCityStyles.CITY_COLORS[city.get('initialDiseaseColouring')],
+	                    width: 6
+	                });
+	            });
+
+	            connected = connected.add(cityId);
 	        });
 	    },
 
 	    createMarkers: function createMarkers(cities) {
-	        var _this = this;
-
+	        var map = this.props.mapObject;
 	        cities.forEach(function (city) {
-	            var _props$mapObject$latLngToPoint = _this.props.mapObject.latLngToPoint(city.get('coordinates')[0], city.get('coordinates')[1]);
+	            var _coordinatesToPoint = (0, _helpersMapHelpers.coordinatesToPoint)(map, city);
 
-	            var x = _props$mapObject$latLngToPoint.x;
-	            var y = _props$mapObject$latLngToPoint.y;
+	            var x = _coordinatesToPoint.x;
+	            var y = _coordinatesToPoint.y;
 
-	            drawLayer.circle().radius(10).attr({
-	                fill: '#370',
-	                cx: x,
-	                cy: y,
+	            /*
+	            {
+	                fill: CITY_COLORS[city.get('initialDiseaseColouring')],
+	                cx: x, cy: y,
 	                id: city.get('name'),
-	                'data-click-id': city.get('name')
-	            }).on('click', function (e) {
+	                'data-click-id': city.get('name'),
+	                stroke: 'black',
+	                'stroke-width': '3'
+	            }
+	            */
+
+	            drawLayer.circle().radius(15).attr((0, _helpersMapHelpers.getCityAttr)(city, x, y)).addClass('city ' + city.get('initialDiseaseColouring')).on('click', function (e) {
 	                e.stopPropagation();
 	                _actionsPlayerActions2['default'].selectCity(city);
 	            });
@@ -28454,13 +28492,11 @@
 
 	        var cities = this.props.cities;
 	        drawLayer = SVG(this.refs.map_overlay).size(width, height).viewbox({
-	            x: 0,
-	            y: 0,
-	            width: width,
-	            height: height
+	            x: 0, y: 0,
+	            width: width, height: height
 	        });
 
-	        this.connectMarkers();
+	        this.connectMarkers(cities);
 	        this.createMarkers(cities);
 	    },
 
@@ -28494,6 +28530,29 @@
 
 /***/ },
 /* 200 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var MAX_DISEASES = 24;
+
+	exports.MAX_DISEASES = MAX_DISEASES;
+	var MAX_OUTBREAKS = 8;
+
+	exports.MAX_OUTBREAKS = MAX_OUTBREAKS;
+	var DISEASE_COLORS = {
+	    RED: 'red',
+	    BLUE: 'blue',
+	    YELLOW: 'yellow',
+	    BLACK: 'black'
+	};
+	exports.DISEASE_COLORS = DISEASE_COLORS;
+
+/***/ },
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28532,7 +28591,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28582,7 +28641,7 @@
 	exports.mapStyle = mapStyle;
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28615,6 +28674,34 @@
 
 	exports['default'] = GameConsole;
 	module.exports = exports['default'];
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _constantsStylesCityStyles = __webpack_require__(196);
+
+	var coordinatesToPoint = function coordinatesToPoint(map, city) {
+	    var cityCoordinates = city.get('coordinates');
+	    return map.latLngToPoint(cityCoordinates[0], cityCoordinates[1]);
+	};
+
+	exports.coordinatesToPoint = coordinatesToPoint;
+	var getCityAttr = function getCityAttr(city, x, y) {
+	    return {
+	        fill: _constantsStylesCityStyles.CITY_COLORS[city.get('initialDiseaseColouring')],
+	        cx: x, cy: y,
+	        id: city.get('name'),
+	        'data-click-id': city.get('name')
+	    };
+	};
+	exports.getCityAttr = getCityAttr;
 
 /***/ }
 /******/ ]);

@@ -1,3 +1,9 @@
+/* line 1, ../src/modules/cities.scss */
+.city {
+  stroke: black;
+  stroke-width: 3;
+}
+
 /* line 3, ../src/modules/map.scss */
 .full-view, .world-map-container {
   position: relative;

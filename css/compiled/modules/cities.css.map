@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AAAA,KAAM;EACF,MAAM,EAAE,KAAK;EACb,YAAY,EAAE,CAAC",
+"sources": ["../../src/modules/cities.scss"],
+"names": [],
+"file": "cities.css"
+}
