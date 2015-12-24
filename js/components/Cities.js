@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import React from 'react'
 
-import {CITY_COLORS} from '../constants/styles/CityStyles'
+import {CITY_SIZE, CITY_COLORS} from '../constants/styles/CityStyles'
 import PlayerActions from '../actions/PlayerActions'
 import {coordinatesToPoint, getCityAttr} from '../helpers/MapHelpers'
 import MapStore from '../stores/MapStore'
@@ -46,12 +46,14 @@ var Cities = React.createClass({
                 const adjacentCity = cities.get(adjacentCityId)
                 const adjacentCoordinates = coordinatesToPoint(map, adjacentCity)
 
-                drawLayer.line(
+                const line = drawLayer.line(
                     cityCoordinates.x, cityCoordinates.y,
                     adjacentCoordinates.x, adjacentCoordinates.y
                     ).stroke({
-                        color: CITY_COLORS[city.get('initialDiseaseColouring')],
-                        width: 6
+                        color: '#bfa',
+                        width: 4
+                    }).filter((add) => {
+                        add.gaussianBlur(1.4)
                     })
             })
 
@@ -64,19 +66,8 @@ var Cities = React.createClass({
         cities.forEach((city) => {
             const {x, y} = coordinatesToPoint(map, city)
 
-            /*
-            {
-                fill: CITY_COLORS[city.get('initialDiseaseColouring')],
-                cx: x, cy: y,
-                id: city.get('name'),
-                'data-click-id': city.get('name'),
-                stroke: 'black',
-                'stroke-width': '3'
-            }
-            */
-
-            drawLayer.circle()
-                .radius(15)
+            const circle = drawLayer.circle()
+                .radius(CITY_SIZE)
                 .attr(getCityAttr(city, x, y))
                 .addClass(`city ${city.get('initialDiseaseColouring')}`)
                 .on('click', (e) => {
@@ -104,6 +95,12 @@ var Cities = React.createClass({
     handleResize() {
         const {width, height} = this.getContainerSize()
         drawLayer.size(width, height)
+    },
+
+    componentWillUpdate() {
+        if (this.props.isMapInitialized) {
+            drawLayer.remove()
+        }
     },
 
     componentWillUnmount() {

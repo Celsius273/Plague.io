@@ -24,6 +24,11 @@ export const mapStyle = {
             'stroke-opacity': 1,
         }
     },
+    series: {
+        regions: [{
+            attribute: 'fill'
+        }]
+    },
     zoomOnScroll: false,
     panOnDrag: false,
     zoomStep: 0,
@@ -34,3 +39,23 @@ export const mapStyle = {
         e.preventDefault();   
     })
 }
+
+const palette = ['']
+
+// export colorizeMap = ()
+
+/*
+const palette = ['rgb(50, 194, 223)', 'rgb(100, 207, 233)', 'rgb(151, 207, 233)']
+const generateColors = (() => {
+    const colors = {}
+    let key
+
+    console.log(worldMap.regions)
+    Immutable.fromJS(worldMap.regions).forEach((value, key) => {
+        colors[key] = palette[Math.floor(Math.random()*palette.length)]
+    })
+    return colors
+})
+
+worldMap.series.regions[0].setValues(generateColors())
+*/

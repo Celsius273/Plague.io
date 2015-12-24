@@ -1,4 +1,34 @@
+@import '../constants/colors';
+
 .city {
     stroke: black;
     stroke-width: 3;
+}
+
+circle.black {
+    fill: $black;
+}
+circle.black:hover {
+    fill: $black-hover;
+}
+
+circle.red {
+    fill: $red;
+}
+circle.red:hover {
+    fill: $red-hover;
+}
+
+circle.blue {
+    fill: $blue;
+}
+circle.blue:hover {
+    fill: $blue-hover;
+}
+
+circle.yellow {
+    fill: $yellow;
+}
+circle.yellow:hover {
+    fill: $yellow-hover;
 }

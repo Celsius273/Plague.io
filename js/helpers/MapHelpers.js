@@ -11,7 +11,6 @@ export const coordinatesToPoint = ((map, city) => {
 
 export const getCityAttr = ((city, x, y) => {
     return {
-        fill: CITY_COLORS[city.get('initialDiseaseColouring')],
         cx: x, cy: y,
         id: city.get('name'),
         'data-click-id': city.get('name')

@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": ";AAAA,KAAM;EACF,MAAM,EAAE,KAAK;EACb,YAAY,EAAE,CAAC",
-"sources": ["../../src/modules/cities.scss"],
+"mappings": ";AAEA,KAAM;EACF,MAAM,EAAE,KAAK;EACb,YAAY,EAAE,CAAC;;;;AAGnB,YAAa;EACT,IAAI,ECRA,IAAI;;;;ADUZ,kBAAmB;EACf,IAAI,ECNM,IAAI;;;;ADSlB,UAAW;EACP,IAAI,ECbF,IAAI;;;;ADeV,gBAAiB;EACb,IAAI,ECXI,IAAI;;;;ADchB,WAAY;EACR,IAAI,ECrBD,IAAI;;;;ADuBX,iBAAkB;EACd,IAAI,ECnBK,IAAI;;;;ADsBjB,aAAc;EACV,IAAI,EC1BC,IAAI;;;;AD4Bb,mBAAoB;EAChB,IAAI,ECxBO,IAAI",
+"sources": ["../../src/modules/cities.scss","../../src/constants/colors.scss"],
 "names": [],
 "file": "cities.css"
 }

@@ -1,7 +1,47 @@
-/* line 1, ../src/modules/cities.scss */
+/* line 3, ../src/modules/cities.scss */
 .city {
   stroke: black;
   stroke-width: 3;
+}
+
+/* line 8, ../src/modules/cities.scss */
+circle.black {
+  fill: #333;
+}
+
+/* line 11, ../src/modules/cities.scss */
+circle.black:hover {
+  fill: #555;
+}
+
+/* line 15, ../src/modules/cities.scss */
+circle.red {
+  fill: #f33;
+}
+
+/* line 18, ../src/modules/cities.scss */
+circle.red:hover {
+  fill: #a10;
+}
+
+/* line 22, ../src/modules/cities.scss */
+circle.blue {
+  fill: #05d;
+}
+
+/* line 25, ../src/modules/cities.scss */
+circle.blue:hover {
+  fill: #029;
+}
+
+/* line 29, ../src/modules/cities.scss */
+circle.yellow {
+  fill: #fd0;
+}
+
+/* line 32, ../src/modules/cities.scss */
+circle.yellow:hover {
+  fill: #ff7;
 }
 
 /* line 3, ../src/modules/map.scss */
@@ -34,7 +74,7 @@
 
 /* line 21, ../src/modules/map.scss */
 .world-map-container {
-  width: 85%;
+  width: 90%;
   position: relative;
   margin: auto;
 }

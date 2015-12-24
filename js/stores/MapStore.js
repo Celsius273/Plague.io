@@ -3,6 +3,8 @@ import {bind, datasource, decorate} from 'alt/utils/decorators'
 import Immutable from 'immutable'
 
 import {DISEASE_COLORS} from '../constants/GameConstants'
+import PlayerActions from '../actions/PlayerActions'
+
 
 @decorate(alt)
 export class MapStore {
@@ -47,19 +49,15 @@ export class MapStore {
                     hasResearchCenter: false,
                     initialDiseaseColouring: DISEASE_COLORS.BLACK
                 })
-            })
+            }),
+            selectedCity: null,
+            currentCity: null
         })
     }
 
-    static createMarkers(cities) {
-        const markers = []
-        cities.forEach((city) => {
-            markers.push({
-                latLng: city.get('coordinates'),
-                name: city.get('name')
-            })
-        })
-        return markers
+    @bind(PlayerActions.selectCity)
+    onSelectCity(city) {
+        console.log(city.toJS())
     }
 }
 

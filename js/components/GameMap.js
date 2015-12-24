@@ -1,3 +1,4 @@
+import Immutable from 'immutable'
 import React from 'react'
 
 import Cities from '../components/Cities'
@@ -32,7 +33,6 @@ var GameMap = React.createClass({
         const {width, height} = this.getContainerSize()
         $('.world-map').vectorMap(mapStyle)
         worldMap = $('.world-map').vectorMap('get', 'mapObject')
-
         this.setState({
             isMapInitialized: true
         })

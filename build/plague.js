@@ -107,7 +107,7 @@
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(203);
+	var _GameConsole = __webpack_require__(204);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -28131,6 +28131,8 @@
 	    value: true
 	});
 
+	var _createDecoratedClass = (function () { function defineProperties(target, descriptors, initializers) { for (var i = 0; i < descriptors.length; i++) { var descriptor = descriptors[i]; var decorators = descriptor.decorators; var key = descriptor.key; delete descriptor.key; delete descriptor.decorators; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor || descriptor.initializer) descriptor.writable = true; if (decorators) { for (var f = 0; f < decorators.length; f++) { var decorator = decorators[f]; if (typeof decorator === 'function') { descriptor = decorator(target, key, descriptor) || descriptor; } else { throw new TypeError('The decorator for method ' + descriptor.key + ' is of the invalid type ' + typeof decorator); } } if (descriptor.initializer !== undefined) { initializers[key] = descriptor; continue; } } Object.defineProperty(target, key, descriptor); } } return function (Constructor, protoProps, staticProps, protoInitializers, staticInitializers) { if (protoProps) defineProperties(Constructor.prototype, protoProps, protoInitializers); if (staticProps) defineProperties(Constructor, staticProps, staticInitializers); return Constructor; }; })();
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -28147,7 +28149,11 @@
 
 	var _immutable2 = _interopRequireDefault(_immutable);
 
-	var _constantsGameConstants = __webpack_require__(200);
+	var _constantsGameConstants = __webpack_require__(196);
+
+	var _actionsPlayerActions = __webpack_require__(201);
+
+	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
 	var MapStore = (function () {
 	    _createClass(MapStore, null, [{
@@ -28162,7 +28168,7 @@
 	        this.state = this.defaultState();
 	    }
 
-	    _createClass(MapStore, [{
+	    _createDecoratedClass(MapStore, [{
 	        key: 'defaultState',
 	        value: function defaultState() {
 	            return new _immutable2['default'].Map({
@@ -28199,20 +28205,16 @@
 	                        hasResearchCenter: false,
 	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
 	                    })
-	                })
+	                }),
+	                selectedCity: null,
+	                currentCity: null
 	            });
 	        }
-	    }], [{
-	        key: 'createMarkers',
-	        value: function createMarkers(cities) {
-	            var markers = [];
-	            cities.forEach(function (city) {
-	                markers.push({
-	                    latLng: city.get('coordinates'),
-	                    name: city.get('name')
-	                });
-	            });
-	            return markers;
+	    }, {
+	        key: 'onSelectCity',
+	        decorators: [(0, _altUtilsDecorators.bind)(_actionsPlayerActions2['default'].selectCity)],
+	        value: function onSelectCity(city) {
+	            console.log(city.toJS());
 	        }
 	    }]);
 
@@ -28226,26 +28228,26 @@
 
 /***/ },
 /* 196 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+	var MAX_DISEASES = 24;
 
-	var _GameConstants = __webpack_require__(200);
+	exports.MAX_DISEASES = MAX_DISEASES;
+	var MAX_OUTBREAKS = 8;
 
-	var CITY_SIZE = 10;
-
-	exports.CITY_SIZE = CITY_SIZE;
-	var CITY_COLORS = {
-	    red: '#f33',
-	    blue: '#05d',
-	    yellow: '#fd0',
-	    black: '#333'
+	exports.MAX_OUTBREAKS = MAX_OUTBREAKS;
+	var DISEASE_COLORS = {
+	    RED: 'red',
+	    BLUE: 'blue',
+	    YELLOW: 'yellow',
+	    BLACK: 'black'
 	};
-	exports.CITY_COLORS = CITY_COLORS;
+	exports.DISEASE_COLORS = DISEASE_COLORS;
 
 /***/ },
 /* 197 */
@@ -28294,6 +28296,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	var _immutable = __webpack_require__(194);
+
+	var _immutable2 = _interopRequireDefault(_immutable);
+
 	var _react = __webpack_require__(17);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -28310,7 +28316,7 @@
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _constantsStylesMapStyles = __webpack_require__(202);
+	var _constantsStylesMapStyles = __webpack_require__(203);
 
 	// globals for map
 	var worldMap = undefined;
@@ -28344,7 +28350,6 @@
 
 	        $('.world-map').vectorMap(_constantsStylesMapStyles.mapStyle);
 	        worldMap = $('.world-map').vectorMap('get', 'mapObject');
-
 	        this.setState({
 	            isMapInitialized: true
 	        });
@@ -28393,13 +28398,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _constantsStylesCityStyles = __webpack_require__(196);
+	var _constantsStylesCityStyles = __webpack_require__(200);
 
 	var _actionsPlayerActions = __webpack_require__(201);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
-	var _helpersMapHelpers = __webpack_require__(204);
+	var _helpersMapHelpers = __webpack_require__(202);
 
 	var _storesMapStore = __webpack_require__(195);
 
@@ -28446,9 +28451,11 @@
 	                var adjacentCity = cities.get(adjacentCityId);
 	                var adjacentCoordinates = (0, _helpersMapHelpers.coordinatesToPoint)(map, adjacentCity);
 
-	                drawLayer.line(cityCoordinates.x, cityCoordinates.y, adjacentCoordinates.x, adjacentCoordinates.y).stroke({
-	                    color: _constantsStylesCityStyles.CITY_COLORS[city.get('initialDiseaseColouring')],
-	                    width: 6
+	                var line = drawLayer.line(cityCoordinates.x, cityCoordinates.y, adjacentCoordinates.x, adjacentCoordinates.y).stroke({
+	                    color: '#bfa',
+	                    width: 4
+	                }).filter(function (add) {
+	                    add.gaussianBlur(1.4);
 	                });
 	            });
 
@@ -28464,18 +28471,7 @@
 	            var x = _coordinatesToPoint.x;
 	            var y = _coordinatesToPoint.y;
 
-	            /*
-	            {
-	                fill: CITY_COLORS[city.get('initialDiseaseColouring')],
-	                cx: x, cy: y,
-	                id: city.get('name'),
-	                'data-click-id': city.get('name'),
-	                stroke: 'black',
-	                'stroke-width': '3'
-	            }
-	            */
-
-	            drawLayer.circle().radius(15).attr((0, _helpersMapHelpers.getCityAttr)(city, x, y)).addClass('city ' + city.get('initialDiseaseColouring')).on('click', function (e) {
+	            var circle = drawLayer.circle().radius(_constantsStylesCityStyles.CITY_SIZE).attr((0, _helpersMapHelpers.getCityAttr)(city, x, y)).addClass('city ' + city.get('initialDiseaseColouring')).on('click', function (e) {
 	                e.stopPropagation();
 	                _actionsPlayerActions2['default'].selectCity(city);
 	            });
@@ -28509,6 +28505,12 @@
 	        drawLayer.size(width, height);
 	    },
 
+	    componentWillUpdate: function componentWillUpdate() {
+	        if (this.props.isMapInitialized) {
+	            drawLayer.remove();
+	        }
+	    },
+
 	    componentWillUnmount: function componentWillUnmount() {
 	        window.removeEventListener('resize', this.handleResize);
 	    },
@@ -28530,26 +28532,26 @@
 
 /***/ },
 /* 200 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	var MAX_DISEASES = 24;
 
-	exports.MAX_DISEASES = MAX_DISEASES;
-	var MAX_OUTBREAKS = 8;
+	var _GameConstants = __webpack_require__(196);
 
-	exports.MAX_OUTBREAKS = MAX_OUTBREAKS;
-	var DISEASE_COLORS = {
-	    RED: 'red',
-	    BLUE: 'blue',
-	    YELLOW: 'yellow',
-	    BLACK: 'black'
+	var CITY_SIZE = 15;
+
+	exports.CITY_SIZE = CITY_SIZE;
+	var CITY_COLORS = {
+	    red: '#f33',
+	    blue: '#05d',
+	    yellow: '#fd0',
+	    black: '#333'
 	};
-	exports.DISEASE_COLORS = DISEASE_COLORS;
+	exports.CITY_COLORS = CITY_COLORS;
 
 /***/ },
 /* 201 */
@@ -28592,6 +28594,33 @@
 
 /***/ },
 /* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _constantsStylesCityStyles = __webpack_require__(200);
+
+	var coordinatesToPoint = function coordinatesToPoint(map, city) {
+	    var cityCoordinates = city.get('coordinates');
+	    return map.latLngToPoint(cityCoordinates[0], cityCoordinates[1]);
+	};
+
+	exports.coordinatesToPoint = coordinatesToPoint;
+	var getCityAttr = function getCityAttr(city, x, y) {
+	    return {
+	        cx: x, cy: y,
+	        id: city.get('name'),
+	        'data-click-id': city.get('name')
+	    };
+	};
+	exports.getCityAttr = getCityAttr;
+
+/***/ },
+/* 203 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28628,6 +28657,11 @@
 	            'stroke-opacity': 1
 	        }
 	    },
+	    series: {
+	        regions: [{
+	            attribute: 'fill'
+	        }]
+	    },
 	    zoomOnScroll: false,
 	    panOnDrag: false,
 	    zoomStep: 0,
@@ -28638,10 +28672,30 @@
 	        e.preventDefault();
 	    }
 	};
+
 	exports.mapStyle = mapStyle;
+	var palette = [''];
+
+	// export colorizeMap = ()
+
+	/*
+	const palette = ['rgb(50, 194, 223)', 'rgb(100, 207, 233)', 'rgb(151, 207, 233)']
+	const generateColors = (() => {
+	    const colors = {}
+	    let key
+
+	    console.log(worldMap.regions)
+	    Immutable.fromJS(worldMap.regions).forEach((value, key) => {
+	        colors[key] = palette[Math.floor(Math.random()*palette.length)]
+	    })
+	    return colors
+	})
+
+	worldMap.series.regions[0].setValues(generateColors())
+	*/
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28674,34 +28728,6 @@
 
 	exports['default'] = GameConsole;
 	module.exports = exports['default'];
-
-/***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	var _constantsStylesCityStyles = __webpack_require__(196);
-
-	var coordinatesToPoint = function coordinatesToPoint(map, city) {
-	    var cityCoordinates = city.get('coordinates');
-	    return map.latLngToPoint(cityCoordinates[0], cityCoordinates[1]);
-	};
-
-	exports.coordinatesToPoint = coordinatesToPoint;
-	var getCityAttr = function getCityAttr(city, x, y) {
-	    return {
-	        fill: _constantsStylesCityStyles.CITY_COLORS[city.get('initialDiseaseColouring')],
-	        cx: x, cy: y,
-	        id: city.get('name'),
-	        'data-click-id': city.get('name')
-	    };
-	};
-	exports.getCityAttr = getCityAttr;
 
 /***/ }
 /******/ ]);
