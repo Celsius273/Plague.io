@@ -99,11 +99,11 @@
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _GameHeader = __webpack_require__(197);
+	var _GameHeader = __webpack_require__(198);
 
 	var _GameHeader2 = _interopRequireDefault(_GameHeader);
 
-	var _GameMap = __webpack_require__(198);
+	var _GameMap = __webpack_require__(199);
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
@@ -23030,6 +23030,7 @@
 	                    black: 0
 	                }),
 	                outbreaks: 0,
+	                infectionRate: 2,
 	                cityCards: [],
 	                cityCardDiscards: [],
 	                infectionCards: [],
@@ -28151,7 +28152,7 @@
 
 	var _constantsGameConstants = __webpack_require__(196);
 
-	var _actionsPlayerActions = __webpack_require__(201);
+	var _actionsPlayerActions = __webpack_require__(197);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
@@ -28259,15 +28260,58 @@
 	    value: true
 	});
 
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _alt = __webpack_require__(2);
+
+	var _alt2 = _interopRequireDefault(_alt);
+
+	var PlayerActions = (function () {
+	    _createClass(PlayerActions, null, [{
+	        key: 'displayName',
+	        value: 'PlayerActions',
+	        enumerable: true
+	    }]);
+
+	    function PlayerActions() {
+	        _classCallCheck(this, PlayerActions);
+
+	        this.generateActions('selectCity');
+	    }
+
+	    return PlayerActions;
+	})();
+
+	exports['default'] = _alt2['default'].createActions(PlayerActions);
+	module.exports = exports['default'];
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _classnames = __webpack_require__(205);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
 
 	var _react = __webpack_require__(17);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _storesMapStore = __webpack_require__(195);
+	var _storesGameStore = __webpack_require__(192);
 
-	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
+	var _storesGameStore2 = _interopRequireDefault(_storesGameStore);
 
 	var GameHeader = _react2['default'].createClass({
 	    displayName: 'GameHeader',
@@ -28276,8 +28320,58 @@
 	        GameStore: _react2['default'].PropTypes.object.isRequired
 	    },
 
+	    createDiseaseComponents: function createDiseaseComponents(diseases) {
+	        var elements = diseases.map(function (numDiseases, diseaseColor) {
+	            var classes = (0, _classnames2['default'])('header-disease-count', diseaseColor);
+
+	            return _react2['default'].createElement(
+	                'div',
+	                { className: classes },
+	                _react2['default'].createElement(
+	                    'p',
+	                    null,
+	                    _react2['default'].createElement('i', { className: 'fa fa-bug' }),
+	                    ' ',
+	                    numDiseases,
+	                    ' / 24'
+	                )
+	            );
+	        });
+	        return elements;
+	    },
+
 	    render: function render() {
-	        return _react2['default'].createElement('div', { className: 'game-header', ref: 'game_header' });
+	        var infectionRate = this.props.GameStore.get('infectionRate');
+	        var outbreaks = this.props.GameStore.get('outbreaks');
+
+	        var diseaseComponents = this.createDiseaseComponents(this.props.GameStore.get('diseases'));
+
+	        console.log(diseaseComponents);
+	        return _react2['default'].createElement(
+	            'div',
+	            { className: 'game-header', ref: 'game_header' },
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'header-infection-rate' },
+	                _react2['default'].createElement(
+	                    'p',
+	                    null,
+	                    'Infection rate: ',
+	                    infectionRate
+	                )
+	            ),
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'header-outbreaks' },
+	                _react2['default'].createElement(
+	                    'p',
+	                    null,
+	                    'Outbreaks: ',
+	                    outbreaks
+	                )
+	            ),
+	            diseaseComponents
+	        );
 	    }
 	});
 
@@ -28285,7 +28379,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28304,11 +28398,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsCities = __webpack_require__(199);
+	var _componentsCities = __webpack_require__(200);
 
 	var _componentsCities2 = _interopRequireDefault(_componentsCities);
 
-	var _actionsPlayerActions = __webpack_require__(201);
+	var _actionsPlayerActions = __webpack_require__(197);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
@@ -28379,7 +28473,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28398,9 +28492,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _constantsStylesCityStyles = __webpack_require__(200);
+	var _constantsStylesCityStyles = __webpack_require__(201);
 
-	var _actionsPlayerActions = __webpack_require__(201);
+	var _actionsPlayerActions = __webpack_require__(197);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
@@ -28531,7 +28625,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28554,45 +28648,6 @@
 	exports.CITY_COLORS = CITY_COLORS;
 
 /***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	var _alt = __webpack_require__(2);
-
-	var _alt2 = _interopRequireDefault(_alt);
-
-	var PlayerActions = (function () {
-	    _createClass(PlayerActions, null, [{
-	        key: 'displayName',
-	        value: 'PlayerActions',
-	        enumerable: true
-	    }]);
-
-	    function PlayerActions() {
-	        _classCallCheck(this, PlayerActions);
-
-	        this.generateActions('selectCity');
-	    }
-
-	    return PlayerActions;
-	})();
-
-	exports['default'] = _alt2['default'].createActions(PlayerActions);
-	module.exports = exports['default'];
-
-/***/ },
 /* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28602,7 +28657,7 @@
 	    value: true
 	});
 
-	var _constantsStylesCityStyles = __webpack_require__(200);
+	var _constantsStylesCityStyles = __webpack_require__(201);
 
 	var coordinatesToPoint = function coordinatesToPoint(map, city) {
 	    var cityCoordinates = city.get('coordinates');
@@ -28728,6 +28783,60 @@
 
 	exports['default'] = GameConsole;
 	module.exports = exports['default'];
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2015 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = '';
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes += ' ' + arg;
+				} else if (Array.isArray(arg)) {
+					classes += ' ' + classNames.apply(null, arg);
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes += ' ' + key;
+						}
+					}
+				}
+			}
+
+			return classes.substr(1);
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);

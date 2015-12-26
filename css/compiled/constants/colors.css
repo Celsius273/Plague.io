@@ -1,3 +1,21 @@
+/* line 11, ../../src/constants/colors.scss */
+.red {
+  color: #f45;
+}
 
+/* line 15, ../../src/constants/colors.scss */
+.yellow {
+  color: #fd0;
+}
+
+/* line 19, ../../src/constants/colors.scss */
+.black {
+  color: #333;
+}
+
+/* line 23, ../../src/constants/colors.scss */
+.blue {
+  color: #57f;
+}
 
 /*# sourceMappingURL=colors.css.map */

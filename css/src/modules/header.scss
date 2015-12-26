@@ -1,0 +1,28 @@
+@import "util";
+
+.game-header {
+    width: 100%;
+    height: 50px;
+    background: #456;
+}
+
+.header-infection-rate {
+    @include light-text();
+    float: left;
+    padding-left: 30px;
+    vertical-align: middle;
+}
+
+.header-outbreaks {
+    @include light-text();
+    float: left;
+    padding-left: 30px;
+    vertical-align: middle;
+}
+
+.header-disease-count {
+    @include light-text();
+    float: right;
+    padding-right: 30px;
+    vertical-align: middle;
+}

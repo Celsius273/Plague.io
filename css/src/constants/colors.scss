@@ -1,9 +1,25 @@
 $black: #333;
 $blue: #05d;
-$red: #f33;
+$red: #f45;
 $yellow: #fd0;
 
 $black-hover: #555;
-$blue-hover: #029;
+$blue-hover: #57f;
 $red-hover: #a10;
 $yellow-hover: #ff7;
+
+.red {
+    color: $red;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.black {
+    color: $black;
+}
+
+.blue {
+    color: $blue-hover;
+}

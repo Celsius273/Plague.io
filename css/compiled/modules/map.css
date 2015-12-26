@@ -28,7 +28,7 @@
 
 /* line 21, ../../src/modules/map.scss */
 .world-map-container {
-  width: 90%;
+  width: 100%;
   position: relative;
   margin: auto;
 }
@@ -43,11 +43,6 @@
 .world-map {
   position: absolute;
   pointer-events: none;
-}
-
-/* line 38, ../../src/modules/map.scss */
-.game-header {
-  width: 85%;
 }
 
 /*# sourceMappingURL=map.css.map */

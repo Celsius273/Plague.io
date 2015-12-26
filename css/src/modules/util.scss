@@ -7,3 +7,7 @@
         padding-top: ($height / $width) * 100%;
     }
 }
+
+@mixin light-text() {
+    color: #eef;
+}

@@ -26,6 +26,7 @@ export class GameStore {
                 black: 0
             }),
             outbreaks: 0,
+            infectionRate: 2,
             cityCards: [],
             cityCardDiscards: [],
             infectionCards: [],
