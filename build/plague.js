@@ -103,11 +103,11 @@
 
 	var _GameHeader2 = _interopRequireDefault(_GameHeader);
 
-	var _GameMap = __webpack_require__(199);
+	var _GameMap = __webpack_require__(200);
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(204);
+	var _GameConsole = __webpack_require__(205);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -23018,9 +23018,9 @@
 	        value: function defaultState() {
 	            return new _immutable2['default'].Map({
 	                cures: new _immutable2['default'].Map({
-	                    red: false,
+	                    red: true,
 	                    yellow: false,
-	                    blue: false,
+	                    blue: true,
 	                    black: false
 	                }),
 	                diseases: new _immutable2['default'].Map({
@@ -28301,7 +28301,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _classnames = __webpack_require__(205);
+	var _classnames = __webpack_require__(199);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -28346,7 +28346,6 @@
 
 	        var diseaseComponents = this.createDiseaseComponents(this.props.GameStore.get('diseases'));
 
-	        console.log(diseaseComponents);
 	        return _react2['default'].createElement(
 	            'div',
 	            { className: 'game-header', ref: 'game_header' },
@@ -28382,6 +28381,60 @@
 /* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2015 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = '';
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes += ' ' + arg;
+				} else if (Array.isArray(arg)) {
+					classes += ' ' + classNames.apply(null, arg);
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes += ' ' + key;
+						}
+					}
+				}
+			}
+
+			return classes.substr(1);
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -28398,9 +28451,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsCities = __webpack_require__(200);
+	var _componentsCities = __webpack_require__(201);
 
 	var _componentsCities2 = _interopRequireDefault(_componentsCities);
+
+	var _componentsCures = __webpack_require__(206);
+
+	var _componentsCures2 = _interopRequireDefault(_componentsCures);
 
 	var _actionsPlayerActions = __webpack_require__(197);
 
@@ -28410,7 +28467,7 @@
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _constantsStylesMapStyles = __webpack_require__(203);
+	var _constantsStylesMapStyles = __webpack_require__(204);
 
 	// globals for map
 	var worldMap = undefined;
@@ -28464,6 +28521,9 @@
 	                cities: this.props.MapStore.get('cities'),
 	                mapObject: worldMap,
 	                isMapInitialized: this.state.isMapInitialized
+	            }),
+	            _react2['default'].createElement(_componentsCures2['default'], {
+	                cures: this.props.GameStore.get('cures')
 	            })
 	        );
 	    }
@@ -28473,7 +28533,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28492,13 +28552,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _constantsStylesCityStyles = __webpack_require__(201);
+	var _constantsStylesCityStyles = __webpack_require__(202);
 
 	var _actionsPlayerActions = __webpack_require__(197);
 
 	var _actionsPlayerActions2 = _interopRequireDefault(_actionsPlayerActions);
 
-	var _helpersMapHelpers = __webpack_require__(202);
+	var _helpersMapHelpers = __webpack_require__(203);
 
 	var _storesMapStore = __webpack_require__(195);
 
@@ -28546,8 +28606,7 @@
 	                var adjacentCoordinates = (0, _helpersMapHelpers.coordinatesToPoint)(map, adjacentCity);
 
 	                var line = drawLayer.line(cityCoordinates.x, cityCoordinates.y, adjacentCoordinates.x, adjacentCoordinates.y).stroke({
-	                    color: '#bfa',
-	                    width: 4
+	                    color: '#bfa', width: 4
 	                }).filter(function (add) {
 	                    add.gaussianBlur(1.4);
 	                });
@@ -28625,7 +28684,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28648,7 +28707,7 @@
 	exports.CITY_COLORS = CITY_COLORS;
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28657,7 +28716,7 @@
 	    value: true
 	});
 
-	var _constantsStylesCityStyles = __webpack_require__(201);
+	var _constantsStylesCityStyles = __webpack_require__(202);
 
 	var coordinatesToPoint = function coordinatesToPoint(map, city) {
 	    var cityCoordinates = city.get('coordinates');
@@ -28675,7 +28734,7 @@
 	exports.getCityAttr = getCityAttr;
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28750,7 +28809,7 @@
 	*/
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28785,58 +28844,92 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-	/* global define */
+	'use strict';
 
-	(function () {
-		'use strict';
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
 
-		var hasOwn = {}.hasOwnProperty;
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-		function classNames () {
-			var classes = '';
+	var _classnames = __webpack_require__(199);
 
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
+	var _classnames2 = _interopRequireDefault(_classnames);
 
-				var argType = typeof arg;
+	var _immutable = __webpack_require__(194);
 
-				if (argType === 'string' || argType === 'number') {
-					classes += ' ' + arg;
-				} else if (Array.isArray(arg)) {
-					classes += ' ' + classNames.apply(null, arg);
-				} else if (argType === 'object') {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes += ' ' + key;
-						}
-					}
-				}
-			}
+	var _immutable2 = _interopRequireDefault(_immutable);
 
-			return classes.substr(1);
-		}
+	var _react = __webpack_require__(17);
 
-		if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else if (true) {
-			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else {
-			window.classNames = classNames;
-		}
-	}());
+	var _react2 = _interopRequireDefault(_react);
 
+	var Cures = _react2['default'].createClass({
+	    displayName: 'Cures',
+
+	    propTypes: {
+	        cures: _react2['default'].PropTypes.object.isRequired
+	    },
+
+	    createCureIcon: function createCureIcon(isCureFound, diseaseColor) {
+	        var cureClasses = (0, _classnames2['default'])('fa', 'fa-stack-lg', 'fa-flask', diseaseColor);
+
+	        var cureOverlayClasses = (0, _classnames2['default'])('fa', 'fa-stack-2x', 'fa-circle', 'cures-overlay');
+
+	        var notCured = isCureFound ? null : _react2['default'].createElement('i', { className: 'fa fa-stack-2x fa-ban dark-red' });
+
+	        return _react2['default'].createElement(
+	            'span',
+	            { className: 'fa-stack fa-lg' },
+	            _react2['default'].createElement('i', { className: cureOverlayClasses }),
+	            _react2['default'].createElement('i', { className: cureClasses }),
+	            notCured
+	        );
+	    },
+
+	    createCureComponents: function createCureComponents(cures) {
+	        var _this = this;
+
+	        var cureComponents = cures.map(function (isCureFound, diseaseColor) {
+	            var cureIcon = _this.createCureIcon(isCureFound, diseaseColor);
+
+	            return _react2['default'].createElement(
+	                'div',
+	                { className: 'cures-child' },
+	                _react2['default'].createElement(
+	                    'p',
+	                    { className: 'no-margin' },
+	                    cureIcon
+	                )
+	            );
+	        });
+	        return cureComponents;
+	    },
+
+	    render: function render() {
+	        var curesFound = this.createCureComponents(this.props.cures);
+
+	        return _react2['default'].createElement(
+	            'div',
+	            {
+	                className: 'world-map-cures',
+	                ref: 'map_cures'
+	            },
+	            _react2['default'].createElement(
+	                'p',
+	                { className: 'no-margin cures-title' },
+	                'Cures Found'
+	            ),
+	            curesFound
+	        );
+	    }
+	});
+
+	exports['default'] = Cures;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

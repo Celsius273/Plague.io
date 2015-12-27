@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": ";AAUA,IAAK;EACD,KAAK,EATH,IAAI;;;;AAYV,OAAQ;EACJ,KAAK,EAZA,IAAI;;;;AAeb,MAAO;EACH,KAAK,EAnBD,IAAI;;;;AAsBZ,KAAM;EACF,KAAK,EAjBI,IAAI",
+"mappings": ";AAUA,IAAK;EACD,KAAK,EATH,IAAI;;;;AAYV,OAAQ;EACJ,KAAK,EAZA,IAAI;;;;AAeb,MAAO;EACH,KAAK,EAnBD,IAAI;;;;AAsBZ,KAAM;EACF,KAAK,EAjBI,IAAI;;;;AAoBjB,SAAU;EACN,KAAK,EAAE,IAAI",
 "sources": ["../../src/constants/colors.scss"],
 "names": [],
 "file": "colors.css"

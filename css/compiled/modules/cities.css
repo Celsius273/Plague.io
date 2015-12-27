@@ -10,12 +10,17 @@
 
 /* line 19, ../../src/constants/colors.scss */
 .black {
-  color: #333;
+  color: #222;
 }
 
 /* line 23, ../../src/constants/colors.scss */
 .blue {
   color: #57f;
+}
+
+/* line 27, ../../src/constants/colors.scss */
+.dark-red {
+  color: #922;
 }
 
 /* line 3, ../../src/modules/cities.scss */
@@ -26,7 +31,7 @@
 
 /* line 8, ../../src/modules/cities.scss */
 circle.black {
-  fill: #333;
+  fill: #222;
 }
 
 /* line 11, ../../src/modules/cities.scss */

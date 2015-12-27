@@ -10,12 +10,17 @@
 
 /* line 19, ../../src/constants/colors.scss */
 .black {
-  color: #333;
+  color: #222;
 }
 
 /* line 23, ../../src/constants/colors.scss */
 .blue {
   color: #57f;
+}
+
+/* line 27, ../../src/constants/colors.scss */
+.dark-red {
+  color: #922;
 }
 
 /*# sourceMappingURL=colors.css.map */

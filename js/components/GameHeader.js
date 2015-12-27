@@ -32,7 +32,6 @@ var GameHeader = React.createClass({
         const diseaseComponents = this.createDiseaseComponents(
             this.props.GameStore.get('diseases'))
 
-        console.log(diseaseComponents)
         return (
             <div className='game-header' ref='game_header'>
                 <div className='header-infection-rate'>

@@ -50,8 +50,7 @@ var Cities = React.createClass({
                     cityCoordinates.x, cityCoordinates.y,
                     adjacentCoordinates.x, adjacentCoordinates.y
                     ).stroke({
-                        color: '#bfa',
-                        width: 4
+                        color: '#bfa', width: 4
                     }).filter((add) => {
                         add.gaussianBlur(1.4)
                     })

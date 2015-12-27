@@ -2,6 +2,7 @@ import Immutable from 'immutable'
 import React from 'react'
 
 import Cities from '../components/Cities'
+import Cures from '../components/Cures'
 import PlayerActions from '../actions/PlayerActions'
 import MapStore from '../stores/MapStore'
 import {mapStyle} from '../constants/styles/MapStyles'
@@ -53,6 +54,9 @@ var GameMap = React.createClass({
                     cities={this.props.MapStore.get('cities')}
                     mapObject={worldMap}
                     isMapInitialized={this.state.isMapInitialized}
+                />
+                <Cures
+                    cures={this.props.GameStore.get('cures')}
                 />
             </div>
         )

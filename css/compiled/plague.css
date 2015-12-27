@@ -1,14 +1,23 @@
 /* line 3, ../src/base.scss */
 body {
   font-family: "Source Sans Pro", sans-serif;
-  margin-top: 0px;
-  margin-right: 0px;
+  margin: 0px;
+}
+
+/* line 30, ../src/modules/util.scss */
+.no-margin {
+  margin: 0px;
+}
+
+/* line 30, ../src/modules/util.scss */
+.no-margin {
+  margin: 0px;
 }
 
 /* line 3, ../src/modules/header.scss */
 .game-header {
   width: 100%;
-  height: 50px;
+  overflow: auto;
   background: #456;
 }
 
@@ -48,12 +57,17 @@ body {
 
 /* line 19, ../src/constants/colors.scss */
 .black {
-  color: #333;
+  color: #222;
 }
 
 /* line 23, ../src/constants/colors.scss */
 .blue {
   color: #57f;
+}
+
+/* line 27, ../src/constants/colors.scss */
+.dark-red {
+  color: #922;
 }
 
 /* line 3, ../src/modules/cities.scss */
@@ -64,7 +78,7 @@ body {
 
 /* line 8, ../src/modules/cities.scss */
 circle.black {
-  fill: #333;
+  fill: #222;
 }
 
 /* line 11, ../src/modules/cities.scss */
@@ -102,6 +116,11 @@ circle.yellow:hover {
   fill: #ff7;
 }
 
+/* line 30, ../src/modules/util.scss */
+.no-margin {
+  margin: 0px;
+}
+
 /* line 3, ../src/modules/map.scss */
 .full-view, .world-map-container {
   position: relative;
@@ -113,39 +132,63 @@ circle.yellow:hover {
   width: 100%;
   padding-top: 56.25%;
 }
-/* line 5, ../src/modules/map.scss */
-.full-view > .world-map-overlay, .world-map-container > .world-map-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-/* line 12, ../src/modules/map.scss */
-.full-view > .world-map, .world-map-container > .world-map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
-/* line 21, ../src/modules/map.scss */
+/* line 7, ../src/modules/map.scss */
 .world-map-container {
   width: 100%;
   position: relative;
   margin: auto;
 }
 
-/* line 28, ../src/modules/map.scss */
+/* line 14, ../src/modules/map.scss */
 .world-map-overlay {
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
 }
 
+/* line 19, ../src/modules/map.scss */
+.world-map-cures {
+  position: absolute;
+  left: calc(50% - 160px);
+  right: 0;
+  bottom: calc(0px + 20px);
+  z-index: 2;
+  background: #789;
+  width: 320px;
+  text-align: center;
+  overflow: auto;
+}
+
 /* line 33, ../src/modules/map.scss */
+.cures-title {
+  padding-top: 10px;
+}
+
+/* line 37, ../src/modules/map.scss */
+.cures-child {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 49, ../src/modules/map.scss */
+.cures-overlay {
+  color: #eef;
+}
+
+/* line 53, ../src/modules/map.scss */
 .world-map {
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
 }
 

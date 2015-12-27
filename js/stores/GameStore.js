@@ -14,9 +14,9 @@ export class GameStore {
     defaultState() {
         return new Immutable.Map({
             cures: new Immutable.Map({
-                red: false,
+                red: true,
                 yellow: false,
-                blue: false,
+                blue: true,
                 black: false
             }),
             diseases: new Immutable.Map({

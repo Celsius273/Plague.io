@@ -8,6 +8,25 @@
     }
 }
 
+@mixin absolute-position() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@mixin bottom-center($width, $height, $offset) {
+    position: absolute;
+    left: calc(50% - #{$width/2});
+    right: 0;
+    bottom: calc(0px + #{$offset});
+}
+
 @mixin light-text() {
     color: #eef;
+}
+
+.no-margin {
+    margin: 0px;
 }
