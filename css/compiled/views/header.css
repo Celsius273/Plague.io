@@ -1,16 +1,11 @@
-/* line 30, ../../src/modules/util.scss */
-.no-margin {
-  margin: 0px;
-}
-
-/* line 3, ../../src/modules/header.scss */
+/* line 4, ../../src/views/header.scss */
 .game-header {
   width: 100%;
   overflow: auto;
   background: #456;
 }
 
-/* line 9, ../../src/modules/header.scss */
+/* line 10, ../../src/views/header.scss */
 .header-infection-rate {
   color: #eef;
   float: left;
@@ -18,7 +13,7 @@
   vertical-align: middle;
 }
 
-/* line 16, ../../src/modules/header.scss */
+/* line 17, ../../src/views/header.scss */
 .header-outbreaks {
   color: #eef;
   float: left;
@@ -26,7 +21,7 @@
   vertical-align: middle;
 }
 
-/* line 23, ../../src/modules/header.scss */
+/* line 24, ../../src/views/header.scss */
 .header-disease-count {
   color: #eef;
   float: right;

@@ -1,12 +1,7 @@
-$black: #222;
-$blue: #05d;
-$red: #f45;
-$yellow: #fd0;
-
-$black-hover: #555;
-$blue-hover: #57f;
-$red-hover: #a10;
-$yellow-hover: #ff7;
+body {
+    font-family: $font;
+    margin: 0px;
+}
 
 .red {
     color: $red;
@@ -26,4 +21,13 @@ $yellow-hover: #ff7;
 
 .dark-red {
     color: #922;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.is-hidden {
+    opacity: 0 !important;
+    display: none;
 }

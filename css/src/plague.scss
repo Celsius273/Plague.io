@@ -1,5 +1,7 @@
+@import "constants";
 @import "base";
-@import "modules/util";
-@import "modules/header";
-@import "modules/cities";
-@import "modules/map";
+@import "mixins";
+
+@import "views/header";
+@import "views/cities";
+@import "views/map";

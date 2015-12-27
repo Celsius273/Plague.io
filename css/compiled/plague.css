@@ -1,27 +1,53 @@
-/* line 3, ../src/base.scss */
+/* line 1, ../src/_base.scss */
 body {
   font-family: "Source Sans Pro", sans-serif;
   margin: 0px;
 }
 
-/* line 30, ../src/modules/util.scss */
+/* line 6, ../src/_base.scss */
+.red {
+  color: #f45;
+}
+
+/* line 10, ../src/_base.scss */
+.yellow {
+  color: #fd0;
+}
+
+/* line 14, ../src/_base.scss */
+.black {
+  color: #222;
+}
+
+/* line 18, ../src/_base.scss */
+.blue {
+  color: #57f;
+}
+
+/* line 22, ../src/_base.scss */
+.dark-red {
+  color: #922;
+}
+
+/* line 26, ../src/_base.scss */
 .no-margin {
   margin: 0px;
 }
 
-/* line 30, ../src/modules/util.scss */
-.no-margin {
-  margin: 0px;
+/* line 30, ../src/_base.scss */
+.is-hidden {
+  opacity: 0 !important;
+  display: none;
 }
 
-/* line 3, ../src/modules/header.scss */
+/* line 4, ../src/views/header.scss */
 .game-header {
   width: 100%;
   overflow: auto;
   background: #456;
 }
 
-/* line 9, ../src/modules/header.scss */
+/* line 10, ../src/views/header.scss */
 .header-infection-rate {
   color: #eef;
   float: left;
@@ -29,7 +55,7 @@ body {
   vertical-align: middle;
 }
 
-/* line 16, ../src/modules/header.scss */
+/* line 17, ../src/views/header.scss */
 .header-outbreaks {
   color: #eef;
   float: left;
@@ -37,7 +63,7 @@ body {
   vertical-align: middle;
 }
 
-/* line 23, ../src/modules/header.scss */
+/* line 24, ../src/views/header.scss */
 .header-disease-count {
   color: #eef;
   float: right;
@@ -45,87 +71,57 @@ body {
   vertical-align: middle;
 }
 
-/* line 11, ../src/constants/colors.scss */
-.red {
-  color: #f45;
-}
-
-/* line 15, ../src/constants/colors.scss */
-.yellow {
-  color: #fd0;
-}
-
-/* line 19, ../src/constants/colors.scss */
-.black {
-  color: #222;
-}
-
-/* line 23, ../src/constants/colors.scss */
-.blue {
-  color: #57f;
-}
-
-/* line 27, ../src/constants/colors.scss */
-.dark-red {
-  color: #922;
-}
-
-/* line 3, ../src/modules/cities.scss */
+/* line 4, ../src/views/cities.scss */
 .city {
   stroke: black;
   stroke-width: 3;
 }
 
-/* line 8, ../src/modules/cities.scss */
+/* line 9, ../src/views/cities.scss */
 circle.black {
   fill: #222;
 }
 
-/* line 11, ../src/modules/cities.scss */
+/* line 12, ../src/views/cities.scss */
 circle.black:hover {
   fill: #555;
 }
 
-/* line 15, ../src/modules/cities.scss */
+/* line 16, ../src/views/cities.scss */
 circle.red {
   fill: #f45;
 }
 
-/* line 18, ../src/modules/cities.scss */
+/* line 19, ../src/views/cities.scss */
 circle.red:hover {
   fill: #a10;
 }
 
-/* line 22, ../src/modules/cities.scss */
+/* line 23, ../src/views/cities.scss */
 circle.blue {
   fill: #05d;
 }
 
-/* line 25, ../src/modules/cities.scss */
+/* line 26, ../src/views/cities.scss */
 circle.blue:hover {
   fill: #57f;
 }
 
-/* line 29, ../src/modules/cities.scss */
+/* line 30, ../src/views/cities.scss */
 circle.yellow {
   fill: #fd0;
 }
 
-/* line 32, ../src/modules/cities.scss */
+/* line 33, ../src/views/cities.scss */
 circle.yellow:hover {
   fill: #ff7;
 }
 
-/* line 30, ../src/modules/util.scss */
-.no-margin {
-  margin: 0px;
-}
-
-/* line 3, ../src/modules/map.scss */
+/* line 4, ../src/views/map.scss */
 .full-view, .world-map-container {
   position: relative;
 }
-/* line 3, ../src/modules/util.scss */
+/* line 3, ../src/_mixins.scss */
 .full-view:before, .world-map-container:before {
   display: block;
   content: "";
@@ -133,14 +129,14 @@ circle.yellow:hover {
   padding-top: 56.25%;
 }
 
-/* line 7, ../src/modules/map.scss */
+/* line 8, ../src/views/map.scss */
 .world-map-container {
   width: 100%;
   position: relative;
   margin: auto;
 }
 
-/* line 14, ../src/modules/map.scss */
+/* line 15, ../src/views/map.scss */
 .world-map-overlay {
   position: absolute;
   top: 0;
@@ -150,7 +146,7 @@ circle.yellow:hover {
   z-index: 1;
 }
 
-/* line 19, ../src/modules/map.scss */
+/* line 20, ../src/views/map.scss */
 .world-map-cures {
   position: absolute;
   left: calc(50% - 160px);
@@ -163,12 +159,12 @@ circle.yellow:hover {
   overflow: auto;
 }
 
-/* line 33, ../src/modules/map.scss */
+/* line 34, ../src/views/map.scss */
 .cures-title {
   padding-top: 10px;
 }
 
-/* line 37, ../src/modules/map.scss */
+/* line 38, ../src/views/map.scss */
 .cures-child {
   display: inline-block;
   padding-left: 10px;
@@ -177,12 +173,12 @@ circle.yellow:hover {
   margin-bottom: 10px;
 }
 
-/* line 49, ../src/modules/map.scss */
+/* line 50, ../src/views/map.scss */
 .cures-overlay {
   color: #eef;
 }
 
-/* line 53, ../src/modules/map.scss */
+/* line 54, ../src/views/map.scss */
 .world-map {
   position: absolute;
   top: 0;
