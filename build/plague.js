@@ -107,7 +107,7 @@
 
 	var _GameMap2 = _interopRequireDefault(_GameMap);
 
-	var _GameConsole = __webpack_require__(205);
+	var _GameConsole = __webpack_require__(206);
 
 	var _GameConsole2 = _interopRequireDefault(_GameConsole);
 
@@ -28455,7 +28455,7 @@
 
 	var _componentsCities2 = _interopRequireDefault(_componentsCities);
 
-	var _componentsCures = __webpack_require__(206);
+	var _componentsCures = __webpack_require__(204);
 
 	var _componentsCures2 = _interopRequireDefault(_componentsCures);
 
@@ -28467,7 +28467,7 @@
 
 	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
 
-	var _constantsStylesMapStyles = __webpack_require__(204);
+	var _constantsStylesMapStyles = __webpack_require__(205);
 
 	// globals for map
 	var worldMap = undefined;
@@ -28685,39 +28685,25 @@
 
 /***/ },
 /* 202 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
-
-	var _GameConstants = __webpack_require__(196);
-
 	var CITY_SIZE = 15;
-
 	exports.CITY_SIZE = CITY_SIZE;
-	var CITY_COLORS = {
-	    red: '#f33',
-	    blue: '#05d',
-	    yellow: '#fd0',
-	    black: '#333'
-	};
-	exports.CITY_COLORS = CITY_COLORS;
 
 /***/ },
 /* 203 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-
-	var _constantsStylesCityStyles = __webpack_require__(202);
-
 	var coordinatesToPoint = function coordinatesToPoint(map, city) {
 	    var cityCoordinates = city.get('coordinates');
 	    return map.latLngToPoint(cityCoordinates[0], cityCoordinates[1]);
@@ -28735,116 +28721,6 @@
 
 /***/ },
 /* 204 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	var DEFAULT_MAP = 'world_mill';
-
-	exports.DEFAULT_MAP = DEFAULT_MAP;
-	var BACKGROUND_COLOR = '#112255';
-
-	exports.BACKGROUND_COLOR = BACKGROUND_COLOR;
-	// deprecated
-	var markerStyle = {
-	    initial: {
-	        fill: '#F8E23B',
-	        stroke: '#383f47',
-	        r: 10
-	    }
-	};
-
-	exports.markerStyle = markerStyle;
-	var mapStyle = {
-	    map: DEFAULT_MAP,
-	    backgroundColor: BACKGROUND_COLOR,
-	    markerStyle: markerStyle,
-	    regionStyle: {
-	        initial: {
-	            fill: 'white',
-	            'fill-opacity': 1,
-	            stroke: 'white',
-	            'stroke-width': 0,
-	            'stroke-opacity': 1
-	        }
-	    },
-	    series: {
-	        regions: [{
-	            attribute: 'fill'
-	        }]
-	    },
-	    zoomOnScroll: false,
-	    panOnDrag: false,
-	    zoomStep: 0,
-	    onRegionTipShow: function onRegionTipShow(e, el, code) {
-	        e.preventDefault();
-	    },
-	    onRegionOver: function onRegionOver(e, code) {
-	        e.preventDefault();
-	    }
-	};
-
-	exports.mapStyle = mapStyle;
-	var palette = [''];
-
-	// export colorizeMap = ()
-
-	/*
-	const palette = ['rgb(50, 194, 223)', 'rgb(100, 207, 233)', 'rgb(151, 207, 233)']
-	const generateColors = (() => {
-	    const colors = {}
-	    let key
-
-	    console.log(worldMap.regions)
-	    Immutable.fromJS(worldMap.regions).forEach((value, key) => {
-	        colors[key] = palette[Math.floor(Math.random()*palette.length)]
-	    })
-	    return colors
-	})
-
-	worldMap.series.regions[0].setValues(generateColors())
-	*/
-
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _react = __webpack_require__(17);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _storesMapStore = __webpack_require__(195);
-
-	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
-
-	var GameConsole = _react2['default'].createClass({
-	    displayName: 'GameConsole',
-
-	    propTypes: {
-	        GameStore: _react2['default'].PropTypes.object.isRequired
-	    },
-
-	    render: function render() {
-	        return _react2['default'].createElement('div', { className: 'game-console' });
-	    }
-	});
-
-	exports['default'] = GameConsole;
-	module.exports = exports['default'];
-
-/***/ },
-/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28929,6 +28805,105 @@
 	});
 
 	exports['default'] = Cures;
+	module.exports = exports['default'];
+
+/***/ },
+/* 205 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var DEFAULT_MAP = 'world_mill';
+
+	exports.DEFAULT_MAP = DEFAULT_MAP;
+	var BACKGROUND_COLOR = '#112255';
+
+	exports.BACKGROUND_COLOR = BACKGROUND_COLOR;
+	var mapStyle = {
+	    map: DEFAULT_MAP,
+	    backgroundColor: BACKGROUND_COLOR,
+	    regionStyle: {
+	        initial: {
+	            fill: 'white',
+	            'fill-opacity': 1,
+	            stroke: 'white',
+	            'stroke-width': 0,
+	            'stroke-opacity': 1
+	        }
+	    },
+	    series: {
+	        regions: [{
+	            attribute: 'fill'
+	        }]
+	    },
+	    zoomOnScroll: false,
+	    panOnDrag: false,
+	    zoomStep: 0,
+	    onRegionTipShow: function onRegionTipShow(e, el, code) {
+	        e.preventDefault();
+	    },
+	    onRegionOver: function onRegionOver(e, code) {
+	        e.preventDefault();
+	    }
+	};
+
+	exports.mapStyle = mapStyle;
+	var palette = [''];
+
+	// export colorizeMap = ()
+
+	/*
+	const palette = ['rgb(50, 194, 223)', 'rgb(100, 207, 233)', 'rgb(151, 207, 233)']
+	const generateColors = (() => {
+	    const colors = {}
+	    let key
+
+	    console.log(worldMap.regions)
+	    Immutable.fromJS(worldMap.regions).forEach((value, key) => {
+	        colors[key] = palette[Math.floor(Math.random()*palette.length)]
+	    })
+	    return colors
+	})
+
+	worldMap.series.regions[0].setValues(generateColors())
+	*/
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(17);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _storesMapStore = __webpack_require__(195);
+
+	var _storesMapStore2 = _interopRequireDefault(_storesMapStore);
+
+	var GameConsole = _react2['default'].createClass({
+	    displayName: 'GameConsole',
+
+	    propTypes: {
+	        GameStore: _react2['default'].PropTypes.object.isRequired
+	    },
+
+	    render: function render() {
+	        return _react2['default'].createElement('div', { className: 'game-console' });
+	    }
+	});
+
+	exports['default'] = GameConsole;
 	module.exports = exports['default'];
 
 /***/ }

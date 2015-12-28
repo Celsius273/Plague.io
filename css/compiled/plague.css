@@ -65,7 +65,6 @@ body {
 
 /* line 24, ../src/views/header.scss */
 .header-disease-count {
-  color: #eef;
   float: right;
   padding-right: 30px;
   vertical-align: middle;

@@ -1,6 +1,3 @@
-import {CITY_COLORS} from '../constants/styles/CityStyles'
-
-
 export const coordinatesToPoint = ((map, city) => {
     const cityCoordinates = city.get('coordinates')
     return map.latLngToPoint(
