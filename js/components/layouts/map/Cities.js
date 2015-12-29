@@ -1,14 +1,29 @@
 import Immutable from 'immutable'
 import React from 'react'
 
-import {CITY_SIZE, CITY_COLORS} from '../constants/styles/CityStyles'
-import PlayerActions from '../actions/PlayerActions'
-import {coordinatesToPoint, getCityAttr} from '../helpers/MapHelpers'
-import MapStore from '../stores/MapStore'
+import {CITY_SIZE} from '../../../constants/MapConstants'
+import PlayerActions from '../../../actions/PlayerActions'
+import MapStore from '../../../stores/MapStore'
 
 
 // global for svg overlay
 let drawLayer
+
+const coordinatesToPoint = ((map, city) => {
+    const cityCoordinates = city.get('coordinates')
+    return map.latLngToPoint(
+        cityCoordinates[0],
+        cityCoordinates[1]
+    )
+})
+
+const getCityAttr = ((city, x, y) => {
+    return {
+        cx: x, cy: y,
+        id: city.get('name'),
+        'data-click-id': city.get('name')
+    }
+})
 
 var Cities = React.createClass({
     propTypes: {

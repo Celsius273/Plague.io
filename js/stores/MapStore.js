@@ -23,7 +23,13 @@ export class MapStore {
                     adjacencies: new Immutable.Set(['2', '3']),
                     coordinates: [64.133, -21.933],
                     hasResearchCenter: false,
-                    initialDiseaseColouring: DISEASE_COLORS.BLUE
+                    initialDiseaseColouring: DISEASE_COLORS.BLUE,
+                    diseases: new Immutable.Map({
+                        red: 0,
+                        yellow: 0,
+                        blue: 0,
+                        black: 0
+                    })
                 }),
                 2: new Immutable.Map({
                     id: '2',

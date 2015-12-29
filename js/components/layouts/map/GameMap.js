@@ -1,11 +1,11 @@
 import Immutable from 'immutable'
 import React from 'react'
 
-import Cities from '../components/Cities'
-import Cures from '../components/Cures'
-import PlayerActions from '../actions/PlayerActions'
-import MapStore from '../stores/MapStore'
-import {mapStyle} from '../constants/styles/MapStyles'
+import Cities from './Cities'
+import Cures from './Cures'
+import PlayerActions from '../../../actions/PlayerActions'
+import MapStore from '../../../stores/MapStore'
+import {mapStyle} from '../../../constants/MapConstants'
 
 
 // globals for map

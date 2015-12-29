@@ -1,14 +1,14 @@
-import alt from '../alt'
+import alt from '../../alt'
 import AltContainer from 'alt-container'
 import Formsy from 'formsy-react'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import GameStore from '../stores/GameStore'
-import MapStore from '../stores/MapStore'
+import GameStore from '../../stores/GameStore'
+import MapStore from '../../stores/MapStore'
 import GameHeader from './GameHeader'
-import GameMap from './GameMap'
-import GameConsole from './GameConsole'
+import GameMap from './map/GameMap'
+import GameConsole from './console/GameConsole'
 
 var GameInner = React.createClass({
     propTypes: {

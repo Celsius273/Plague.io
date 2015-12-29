@@ -2,6 +2,8 @@ export const DEFAULT_MAP = 'world_mill'
 
 export const BACKGROUND_COLOR = '#112255'
 
+export const CITY_SIZE = 15
+
 export const mapStyle = {
     map: DEFAULT_MAP,
     backgroundColor: BACKGROUND_COLOR,

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import GameStore from '../stores/MapStore'
+import GameStore from '../../../stores/MapStore'
 
 
 var GameConsole = React.createClass({

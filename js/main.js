@@ -1,4 +1,4 @@
-import Game from '../js/components/Game'
+import Game from '../js/components/layouts/Game'
 
 // main.js
 var React = require('react');

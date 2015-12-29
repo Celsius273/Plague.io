@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import GameStore from '../stores/GameStore'
+import GameStore from '../../stores/GameStore'
 
 
 var GameHeader = React.createClass({
