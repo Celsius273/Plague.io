@@ -28194,7 +28194,7 @@
 	                        adjacencies: new _immutable2['default'].Set(['1', '3']),
 	                        coordinates: [48.857, 2.351],
 	                        hasResearchCenter: true,
-	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
 	                    }),
 	                    3: new _immutable2['default'].Map({
 	                        id: '3',
@@ -28202,7 +28202,7 @@
 	                        adjacencies: new _immutable2['default'].Set(['1', '2', '4']),
 	                        coordinates: [47.567, -52.707],
 	                        hasResearchCenter: false,
-	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
 	                    }),
 	                    4: new _immutable2['default'].Map({
 	                        id: '4',
@@ -28210,7 +28210,359 @@
 	                        adjacencies: new _immutable2['default'].Set(['3']),
 	                        coordinates: [38.905, -77.016],
 	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    5: new _immutable2['default'].Map({
+	                        id: '5',
+	                        name: 'Lisbon',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [38.714, -9.1394],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    6: new _immutable2['default'].Map({
+	                        id: '6',
+	                        name: 'Oslo',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [59.95, 10.75],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    7: new _immutable2['default'].Map({
+	                        id: '7',
+	                        name: 'Athens',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [39.95, 23.72],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    8: new _immutable2['default'].Map({
+	                        id: '8',
+	                        name: 'Kiev',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [50.45, 30.52],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    9: new _immutable2['default'].Map({
+	                        id: '9',
+	                        name: 'Iqaluit',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [63.75, -68.52],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    10: new _immutable2['default'].Map({
+	                        id: '10',
+	                        name: 'St. Petersburg',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [59.95, 30.3],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    11: new _immutable2['default'].Map({
+	                        id: '11',
+	                        name: 'Regina',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [50.45, -104.6],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    12: new _immutable2['default'].Map({
+	                        id: '12',
+	                        name: 'Vancouver',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [49.28, -123.12],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLUE
+	                    }),
+	                    13: new _immutable2['default'].Map({
+	                        id: '13',
+	                        name: 'Los Angeles',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [34.05, -118.25],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    14: new _immutable2['default'].Map({
+	                        id: '14',
+	                        name: 'Mexico City',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [19.43, -99.13],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    15: new _immutable2['default'].Map({
+	                        id: '15',
+	                        name: 'Havana',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [23.13, -82.38],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    16: new _immutable2['default'].Map({
+	                        id: '16',
+	                        name: 'Panama',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [8.98, -79.52],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    17: new _immutable2['default'].Map({
+	                        id: '17',
+	                        name: 'Antananarivo',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-18.93, 47.52],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    18: new _immutable2['default'].Map({
+	                        id: '18',
+	                        name: 'Cape Town',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-33.92, 18.42],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    19: new _immutable2['default'].Map({
+	                        id: '19',
+	                        name: 'Belem',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-1.46, -48.5],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    20: new _immutable2['default'].Map({
+	                        id: '20',
+	                        name: 'Lima',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-12.04, -77.03],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    21: new _immutable2['default'].Map({
+	                        id: '21',
+	                        name: 'Bueno Aires',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-34.6, -58.38],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    22: new _immutable2['default'].Map({
+	                        id: '22',
+	                        name: 'Punta Arenas',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-53.17, -70.93],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    23: new _immutable2['default'].Map({
+	                        id: '23',
+	                        name: 'Kinshasa',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-4.32, 15.32],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    24: new _immutable2['default'].Map({
+	                        id: '24',
+	                        name: 'Mombasa',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-4.05, 39.67],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.YELLOW
+	                    }),
+	                    25: new _immutable2['default'].Map({
+	                        id: '25',
+	                        name: 'Monrovia',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [6.31, -10.8],
+	                        hasResearchCenter: false,
 	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    26: new _immutable2['default'].Map({
+	                        id: '26',
+	                        name: 'NouakChott',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [18.1, -15.95],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    27: new _immutable2['default'].Map({
+	                        id: '27',
+	                        name: 'Tripoli',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [32.9, 13.18],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    28: new _immutable2['default'].Map({
+	                        id: '28',
+	                        name: 'Khartoum',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [15.63, 32.53],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    29: new _immutable2['default'].Map({
+	                        id: '29',
+	                        name: 'Medina',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [24.46, 39.6],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    30: new _immutable2['default'].Map({
+	                        id: '30',
+	                        name: 'Dubai',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [25.2, 55.27],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    31: new _immutable2['default'].Map({
+	                        id: '31',
+	                        name: 'Tehran',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [35.69, 51.42],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    32: new _immutable2['default'].Map({
+	                        id: '32',
+	                        name: 'Astana',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [51.16, 71.43],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    33: new _immutable2['default'].Map({
+	                        id: '33',
+	                        name: 'Delhi',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [28.61, 77.2],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    34: new _immutable2['default'].Map({
+	                        id: '34',
+	                        name: 'Chennai',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [13.08, 80.27],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    35: new _immutable2['default'].Map({
+	                        id: '35',
+	                        name: 'Lhasa',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [29.65, 91.11],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    36: new _immutable2['default'].Map({
+	                        id: '36',
+	                        name: 'Urumqi',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [43.82, 87.6],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.BLACK
+	                    }),
+	                    37: new _immutable2['default'].Map({
+	                        id: '37',
+	                        name: 'Irkutsk',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [52.31, 104.29],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    38: new _immutable2['default'].Map({
+	                        id: '38',
+	                        name: 'Xian',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [34.26, 108.9],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    39: new _immutable2['default'].Map({
+	                        id: '39',
+	                        name: 'Harbin',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [45.75, 126.63],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    40: new _immutable2['default'].Map({
+	                        id: '40',
+	                        name: 'Taipei',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [25.03, 121.63],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    41: new _immutable2['default'].Map({
+	                        id: '41',
+	                        name: 'Perth',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-31.95, 115.85],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    42: new _immutable2['default'].Map({
+	                        id: '42',
+	                        name: 'Sydney',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-33.86, 151.20],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    43: new _immutable2['default'].Map({
+	                        id: '43',
+	                        name: 'Wellington',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-41.28, 174.77],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    44: new _immutable2['default'].Map({
+	                        id: '44',
+	                        name: 'Tokyo',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [35.68, 139.68],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    45: new _immutable2['default'].Map({
+	                        id: '45',
+	                        name: 'Bangkok',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [13.75, 100.5],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    46: new _immutable2['default'].Map({
+	                        id: '46',
+	                        name: 'Jakarta',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-6.17, 106.82],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    47: new _immutable2['default'].Map({
+	                        id: '47',
+	                        name: 'Manila',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [14.58, 121],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
+	                    }),
+	                    48: new _immutable2['default'].Map({
+	                        id: '48',
+	                        name: 'Port Moresby',
+	                        adjacencies: new _immutable2['default'].Set([]),
+	                        coordinates: [-9.51, 147.21],
+	                        hasResearchCenter: false,
+	                        initialDiseaseColouring: _constantsGameConstants.DISEASE_COLORS.RED
 	                    })
 	                }),
 	                selectedCity: null,
@@ -28607,7 +28959,7 @@
 	        };
 	    },
 
-	    connectMarkers: function connectMarkers(cities) {
+	    renderCityConnections: function renderCityConnections(cities) {
 	        var map = this.props.mapObject;
 	        var connected = new _immutable2['default'].Set();
 	        cities.forEach(function (city, cityId) {
@@ -28633,7 +28985,9 @@
 	        });
 	    },
 
-	    createMarkers: function createMarkers(cities) {
+	    renderDiseases: function renderDiseases(cities) {},
+
+	    renderCityMarkers: function renderCityMarkers(cities) {
 	        var map = this.props.mapObject;
 	        cities.forEach(function (city) {
 	            var _coordinatesToPoint = coordinatesToPoint(map, city);
@@ -28647,6 +29001,10 @@
 	            });
 	        });
 	    },
+
+	    renderPlayers: function renderPlayers(cities) {},
+
+	    renderResearchCenters: function renderResearchCenters(cities) {},
 
 	    createMapOverlay: function createMapOverlay() {
 	        var _getContainerSize = this.getContainerSize();
@@ -28662,8 +29020,13 @@
 	            width: width, height: height
 	        });
 
-	        this.connectMarkers(cities);
-	        this.createMarkers(cities);
+	        // steps are ordered by the order in which elements overlap each other
+	        // most of this is really just appending stuff to the svg layer
+	        this.renderCityConnections(cities);
+	        // this.renderDiseases(cities)
+	        this.renderCityMarkers(cities);
+	        // this.renderPlayers(cities)
+	        // this.renderResearchCenters(cities)
 	    },
 
 	    handleResize: function handleResize() {

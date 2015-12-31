@@ -37,7 +37,7 @@ var Cities = React.createClass({
             isMapInitialized: false,
             mapObject: null
         }
-    }, 
+    },
 
     getContainerSize() {
         return {
@@ -46,7 +46,7 @@ var Cities = React.createClass({
         }
     },
 
-    connectMarkers(cities) {
+    renderCityConnections(cities) {
         const map = this.props.mapObject
         let connected = new Immutable.Set()
         cities.forEach((city, cityId) => {
@@ -75,7 +75,11 @@ var Cities = React.createClass({
         })
     },
 
-    createMarkers(cities) {
+    renderDiseases(cities) {
+        
+    },
+
+    renderCityMarkers(cities) {
         const map = this.props.mapObject
         cities.forEach((city) => {
             const {x, y} = coordinatesToPoint(map, city)
@@ -91,6 +95,14 @@ var Cities = React.createClass({
         })
     },
 
+    renderPlayers(cities) {
+        
+    },
+
+    renderResearchCenters(cities) {
+
+    },
+
     createMapOverlay() {
         const {width, height} = this.getContainerSize()
         window.addEventListener('resize', this.handleResize)
@@ -102,8 +114,13 @@ var Cities = React.createClass({
             width: width, height: height
         })
 
-        this.connectMarkers(cities)
-        this.createMarkers(cities)
+        // steps are ordered by the order in which elements overlap each other
+        // most of this is really just appending stuff to the svg layer
+        this.renderCityConnections(cities)
+        // this.renderDiseases(cities)
+        this.renderCityMarkers(cities)
+        // this.renderPlayers(cities)
+        // this.renderResearchCenters(cities)
     },
 
     handleResize() {
