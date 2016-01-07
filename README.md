@@ -1,5 +1,9 @@
 # Plague.io
 
+### TODO: update this readme
+
+Link to backend repo: https://github.com/NullCodex/Plague.io
+
 ### What is this?
 
 This is a simple as can be react project made as a setup exercise.
